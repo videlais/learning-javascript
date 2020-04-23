@@ -5,8 +5,8 @@ This is an "open source" textbook. Remixing, reusing, or improving it through pu
 ## Table of Contents
 
 - [Introduction](introduction/index.md)
-- [Chapter 1: Variables](chapter1/index.md)
-- [Chapter 2: Functions](chapter2/index.md)
+- [Chapter 1: Reviewing Variables](chapter1/index.md)
+- [Chapter 2: Reviewing Functions](chapter2/index.md)
 - [Chapter 3: Classes](chapter3/index.md)
 - [Chapter 4: Template Literals](chapter4/index.md)
 - [Chapter 5: Promises](chapter5/index.md)
