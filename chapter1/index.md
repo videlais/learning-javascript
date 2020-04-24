@@ -17,9 +17,6 @@
       - [`Array`](#array)
   - [Mathematics with Variables](#mathematics-with-variables)
     - [Order of Operations](#order-of-operations)
-  - [Working with Strings](#working-with-strings)
-  - [Working with Arrays](#working-with-arrays)
-  - [Object Literals](#object-literals)
 
 ## Introduction to Variables
 
@@ -195,20 +192,3 @@ The list is quite expansive, but some of the specific order includes the followi
 - Division
 - Addition
 - Subtraction
-
-## Working with Strings
-
-While Numbers can be added together, String values have a different special operation associated with them: *concatenation*.
-
-This operation, *concatenation*, literally means "to put together."
-
-With the addition symbol is used with String values, they are combined!
-
-```javascript
-let stringExample = "Hello";
-stringExample = stringExample + ", world!";
-```
-
-## Working with Arrays
-
-## Object Literals

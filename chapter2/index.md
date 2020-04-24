@@ -1,6 +1,62 @@
 # Functions
 
-### Arrow Functions
+- [Functions](#functions)
+  - [Defining Functions](#defining-functions)
+    - [Function Anatomy](#function-anatomy)
+  - [Anonymous Functions](#anonymous-functions)
+  - [Callback Functions](#callback-functions)
+  - [Arrow Functions](#arrow-functions)
+    - [Arrow Function Expressions](#arrow-function-expressions)
+
+## Defining Functions
+
+Beyond variables, *functions* are the next most important concept to understand in programming. They allow a large, potentially complex program to be broken up into parts through having each part perform a specific task.
+
+Some definitions of *function* include the words procedure or routine. These are both useful words in helping to define a function in relate to other parts of code. Put simply: a function is a series of commands.
+
+Usually, the commands are tied to a specific task, but this is not a rule for functions. They can be *any* series of commands that better helps organize a program or large collection of code.
+
+### Function Anatomy
+
+In their most traditional form, functions are defined using the keyword `function` in JavaScript.
+
+```javascript
+function exampleFunction() {
+
+}
+```
+
+Including their name, like for the above *exampleFunction()*, functions have multiple parts in JavaScript.
+
+- *Name* (Optional): What the function is named.
+- *Arguments:* Values passed into the function
+- *Body:* What statements are inside the function
+- `return` statement (Optional): What, if anything, is output from the function.
+
+If functions are thought of as a series of statements toward a specific task, it can help to give them value to work on and then expect some form of output. Consider an example of a function called *addXandY()*.
+
+```javascript
+function addXandY(x, y) {
+  return x + y;
+}
+```
+
+In the above example, its different parts would breakdown as the following:
+
+- Name: *addXandY()*
+- Arguments: *x* and *y*
+- Body: `return` x + y
+- `return`: x + y
+
+The function accepts two arguments, *x* and *y*, and its body is a single line.
+
+TODO
+
+## Anonymous Functions
+
+## Callback Functions
+
+## Arrow Functions
 
 In JavaScript ES5, it was often common to use an anonymous function as part of different built-in functionality in JavaScript.
 
@@ -39,7 +95,7 @@ function returnLastEntry(arrayExample) {
 
 In the above code, the use of the arrow function allows the code inside it to access the *this* of the function it is defined within, *returnLastEntry()*. While a silly example, it shows how an arrow function can access the *this* where it is defined.
 
-#### Arrow Function Expressions
+### Arrow Function Expressions
 
 Arrow functions can use the normal syntax of functions like the following where at least one statement would be used inside the body of the function:
 

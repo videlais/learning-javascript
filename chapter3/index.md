@@ -1,8 +1,122 @@
 # Reviewing Objects
 
-## Object Literals
+- [Reviewing Objects](#reviewing-objects)
+  - [Introducing Objects](#introducing-objects)
+  - [Built-in Objects](#built-in-objects)
+    - [Strings](#strings)
+      - [String Properties](#string-properties)
+      - [String Functions](#string-functions)
+      - [Concatenation](#concatenation)
+    - [Arrays](#arrays)
+      - [Array Properties](#array-properties)
+      - [Array Functions](#array-functions)
+      - [Ordered Entries](#ordered-entries)
+      - [Using Loops to Access Entries](#using-loops-to-access-entries)
+    - [Object Literals](#object-literals)
+      - [Object Properties](#object-properties)
+      - [Object Functions](#object-functions)
+  - [Classes](#classes)
+    - [Creating `new` Objects](#creating-new-objects)
+    - [`class` and `extends`](#class-and-extends)
+      - [`class`](#class)
+      - [*constructor()*](#constructor)
+        - [Class Scope](#class-scope)
+      - [*super()*](#super)
+
+## Introducing Objects
+
+(Properties)
+(Functions)
+
+## Built-in Objects
+
+### Strings
+
+#### String Properties
+
+#### String Functions
+
+#### Concatenation
+
+While Numbers can be added together, String values have a different special operation associated with them: *concatenation*.
+
+This operation, *concatenation*, literally means "to put together."
+
+With the addition symbol is used with String values, they are combined!
+
+```javascript
+let stringExample = "Hello";
+stringExample = stringExample + ", world!";
+```
+
+### Arrays
+
+#### Array Properties
+
+
+#### Array Functions
+
+
+Arrays are a special type of object where the order of the entries is important. They are created through using either an opening and closing square bracket together, `[]`, or using the **Array()** constructor.
+
+#### Ordered Entries
+
+The use of square brackets is important for arrays. Not only are they defined through using a literal list of entries with them, but entries are also accessed using their position.
+
+```javascript
+let arrayExample = [1,2,"hello"];
+```
+
+Arrays start at position 0 in JavaScript. Therefore, to access to the first (0) position of an array, the position would be given in square brackets: `[0]`.
+
+As entries are referenced using the name of the array, to access the second (1) entry in the variable *arrayExample*, it would be the following:
+
+```javascript
+arrayExample[1] = 5;
+```
+
+Values can both be accessed and set using their position. As with the above example, the value at the second (1) position would be overwritten.
+
+#### Using Loops to Access Entries
+
+One of the most common ways to access all the entries of an array is using a looping keyword like `for()` or `while()`. Through using a computer position, all entries would be accessed in turn.
+
+```javascript
+let arrayExample = [1,2,"Hello"];
+
+for(let i = 0; i < arrayExample.length; i+++) {
+  arrayExample[i] = 5;
+}
+
+```
+
+In the above code, the value 5 would be set to each existing entry, using the computer property each time through the loop.
+
+The code example also shows an important reminder. As a type of object, all objects have some built-in properties. For arrays, they all have a *length* that is updated as values are added or removed from the array. It will always have the exact number of entries in the array.
+
+Using the `while()` keyword would be very similar. Using a counter, a number could be checked like in the `for()` example.
+
+```javascript
+let arrayExample = [1,2,"Hello"];
+let position = 0;
+
+while (position < arrayExample.length) {
+  arrayExample[position] = 5;
+  position = position + 1;
+}
+```
+
+
+
+### Object Literals
+
+#### Object Properties
+
+#### Object Functions
 
 ## Classes
+
+### Creating `new` Objects
 
 ### `class` and `extends`
 
