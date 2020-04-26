@@ -3,29 +3,44 @@
 - [Reviewing Objects](#reviewing-objects)
   - [Introducing Objects](#introducing-objects)
   - [Built-in Objects](#built-in-objects)
-    - [Strings](#strings)
-      - [String Properties](#string-properties)
-      - [String Methods](#string-methods)
-      - [Concatenation](#concatenation)
-    - [Arrays](#arrays)
+    - [Array](#array)
       - [Array Properties](#array-properties)
-      - [Array Methods](#array-methods)
+        - [Array *length*](#array-length)
       - [Ordered Entries](#ordered-entries)
       - [Using Loops to Access Entries](#using-loops-to-access-entries)
+      - [Array Methods](#array-methods)
+        - [*copyWithin()*](#copywithin)
+    - [Strings](#strings)
+      - [String Properties](#string-properties)
+        - [String *length*](#string-length)
+      - [String Methods](#string-methods)
+        - [*charAt(index)*](#charatindex)
+        - [*concat()*](#concat)
+        - [*includes(value)*](#includesvalue)
+        - [*endsWith(value)*](#endswithvalue)
+        - [*indexOf(value)*](#indexofvalue)
+        - [*lastIndexOf(value)*](#lastindexofvalue)
+        - [*match()*](#match)
+        - [*matchAll()*](#matchall)
+        - [*padEnd(length, value)*](#padendlength-value)
+        - [*padStart(length, value)*](#padstartlength-value)
+        - [*repeat(number)*](#repeatnumber)
+        - [*replace(search, replace)*](#replacesearch-replace)
+        - [*search(regExp)*](#searchregexp)
+        - [*slice(position, end)*](#sliceposition-end)
+        - [*split(value)*](#splitvalue)
+        - [*startsWith(value)*](#startswithvalue)
+        - [*substring(position, end)*](#substringposition-end)
+        - [*toLowerCase()*](#tolowercase)
+        - [*toUpperCase()*](#touppercase)
+        - [*trim()*](#trim)
+        - [*trimStart()* / *trimLeft()*](#trimstart--trimleft)
+        - [*trimEnd()* / *trimRight()*](#trimend--trimright)
+      - [Concatenation](#concatenation)
+      - [Template Literals](#template-literals)
     - [Object Literals](#object-literals)
       - [Object Properties](#object-properties)
       - [Object Methods](#object-methods)
-  - [Functions as Objects](#functions-as-objects)
-    - [ES5 Objects](#es5-objects)
-    - [Working with `this`](#working-with-this)
-    - [Prototypes](#prototypes)
-  - [Classes](#classes)
-    - [Creating `new` Objects](#creating-new-objects)
-    - [`class` and `extends`](#class-and-extends)
-      - [`class`](#class)
-      - [*constructor()*](#constructor)
-        - [Class Scope](#class-scope)
-      - [*super()*](#super)
 
 ## Introducing Objects
 
@@ -40,34 +55,25 @@ In JavaScript, objects are the *building-blocks* of understanding complex data s
 
 ## Built-in Objects
 
-TODO
+JavaScript has several built-in objects for working with certain types of data. Notable among these, and fundamental parts of other, more complex data structures, are **Array** and **String**.
 
-### Strings
+### Array
 
-#### String Properties
-
-#### String Methods
-
-#### Concatenation
-
-While Numbers can be added together, String values have a different special operation associated with them: *concatenation*.
-
-This operation, *concatenation*, literally means "to put together."
-
-With the addition symbol is used with String values, they are combined!
+In programming terminology, an *array* is a sequence of values. In JavaScript, arrays are created and accessed through the use of opening and closing square brackets. They are also a special type of object where the order of the entries is important. They are stored *in order*.
 
 ```javascript
-let stringExample = "Hello";
-stringExample = stringExample + ", world!";
+let arrayExample = [1,2,3];
 ```
 
-### Arrays
+Values in an array are separated by commas and enclosed in opening and square brackets.
+
+In JavaScript, arrays are also *objects*. This means they have built-in properties and methods.
 
 #### Array Properties
 
-#### Array Methods
+##### Array *length*
 
-Arrays are a special type of object where the order of the entries is important. They are created through using either an opening and closing square bracket together, `[]`, or using the **Array()** constructor.
+The *length* of an array is the number of entries within it. This is automatically updated.
 
 #### Ordered Entries
 
@@ -116,207 +122,169 @@ while (position < arrayExample.length) {
 }
 ```
 
+#### Array Methods
+
+##### *copyWithin()*
+
+Copies part of an array into another part of the array.
+
+### Strings
+
+As mentioned in Chapter 1, a String is a collection of letters, numbers, and other symbol set off by single or double-quotation marks.
+
+In programming terminology, each individual entry in a string is called a *character*. This is a single letter, number, or symbol *within* a string value.
+
+A string is *empty* if it contains no *characters* between the quotation marks. An *empty string* is a string with characters.
+
+In JavaScript, all string values are also a type of object: **String**.
+
+As with all objects, all values that are object have both properties and methods.
+
+#### String Properties
+
+##### String *length*
+
+All **String** values have a length. This is the number of characters in the string. It is automatically updated as characters are added or removed from the string.
+
+```javascript
+let stringExample = "Hello!";
+
+// Outputs 6
+console.log(stringExample.length);
+```
+
+#### String Methods
+
+As strings are potentially complex or a long series of characters, there are many methods available within JavaScript for working with string values.
+
+##### *charAt(index)*
+
+The function *charAt()* returns the character at the specific *index* f *index* is less than the total *length*.
+
+If *index* is greater than the *length* of the string, it returns an empty string.
+
+Otherwise, it returns the first position (0) within the string.
+
+##### *concat()*
+
+Returns a new string value made up of all of the arguments passed combined together.
+
+##### *includes(value)*
+
+Searches a string for a value, *value*. If found, the function returns `true`. Otherwise, it returns `false`.
+
+##### *endsWith(value)*
+
+Returns `true` if a string ends with *value*. Otherwise, returns `false`.
+
+##### *indexOf(value)*
+
+Returns the first position of *value* within the string or -1 if it cannot be found.
+
+##### *lastIndexOf(value)*
+
+Returns the first position of the *last* occurrence of *value* within a string or -1 if *value* is not found in the string.
+
+##### *match()*
+
+Searches a string using a Regular Expression, returning the result.
+
+##### *matchAll()*
+
+Returns all capture groups based on a Regular Expression value.
+
+##### *padEnd(length, value)*
+
+Returns a new string of length *length* with *value* added to the end of the current string to create a string of *length*.
+
+##### *padStart(length, value)*
+
+Returns a new string of length *length* with *value* added to the beginning of the current string to create a string of *length*.
+
+##### *repeat(number)*
+
+Returns a new string created through repeating the current characters *number* of times.
+
+##### *replace(search, replace)*
+
+Searches for *search* within a string. If found, replaces it with *replace*. Returns a new string.
+
+##### *search(regExp)*
+
+Searches a string based on a Regular Expression.
+
+##### *slice(position, end)*
+
+Returns a new string from the existing string starting with *position* and ending either at the end of the string or at the position *end*.
+
+##### *split(value)*
+
+Creates an array through dividing up a string based on *value*.
+
+##### *startsWith(value)*
+
+Returns `true` if string begins with *value*. Otherwise, it returns `false`.
+
+##### *substring(position, end)*
+
+Returns a new string starting at *position* and ending in *end*. If *end* is greater than the *length*, it returns up to the end.
+
+##### *toLowerCase()*
+
+Returns the current string with all letters in lower case.
+
+##### *toUpperCase()*
+
+Returns the current string with all letters in upper case.
+
+##### *trim()*
+
+Returns a new string with whitespace (space, tab, no-break space) removes from the beginning and end.
+
+##### *trimStart()* / *trimLeft()*
+
+Removed whitespace space, tab, no-break space) from the beginning of the string.
+
+##### *trimEnd()* / *trimRight()*
+
+Removed whitespace space, tab, no-break space) from the end of the string.
+
+#### Concatenation
+
+While Numbers can be added together, String values have a different special operation associated with them: *concatenation*.
+
+This operation, *concatenation*, literally means "to put together."
+
+With the addition symbol is used with String values, they are combined!
+
+```javascript
+let stringExample = "Hello";
+stringExample = stringExample + ", world!";
+```
+
+#### Template Literals
+
+Concatenating strings is a common activity in JavaScript. To help clean up code, ES6 added new functionality: template literals.
+
+In JavaScript ES5, adding the value of a variable to a complex string required multiple concatenation actions.
+
+```javascript
+let example = 5;
+console.log('This uses a template literal: ' + example + '!');
+```
+
+In JavaScript ES6, template literals are enclosed in back-ticks, `` ` ``. Any use of a variable starts with the dollar-sign, `$`, and then is enclosed in opening and closing curly brackets.
+
+```javascript
+let example = 5;
+console.log(`This uses a template literal: ${example}!`);
+```
+
+No concatenation is needed. The template literal handles all of the work to combine the value of the variable with the string around it.
+
 ### Object Literals
 
 #### Object Properties
 
 #### Object Methods
 
-## Functions as Objects
-
-### ES5 Objects
-
-```javascript
-function exampleFunction() {
-  this.internalValue = 5;
-  return this.internalValue;
-}
-
-var test = new exampleFunction();
-
-console.log(test.internalValue);
-```
-
-### Working with `this`
-
-When discussing objects, the internal functions to that object are often called its *methods*.
-
-### Prototypes
-
-## Classes
-
-### Creating `new` Objects
-
-### `class` and `extends`
-
-Starting with ES6, JavaScript is now a true object-oriented programming language. Previous to ES6, it was possible to replicate most object-oriented programming functionality. However, ES6 added two important keywords, `class` and `extends`, that enabled full OOP support.
-
-#### `class`
-
-The `class` keyword is used to create classes in JavaScript. It defines a set of properties and functions that exist within the class as enclosed within curly brackets.
-
-```javascript
-class Example {
-
-}
-```
-
-When used with the `class` keyword, `extends` enables inheritance between classes. In object-oriented programming terms, this allows one object to 'extend' an existing one through gaining everything it has and adding more.
-
-**index.js:**
-
-```javascript
-class Example {
-
-}
-
-class Another extends Example {
-
-}
-```
-
-#### *constructor()*
-
-Classes are created through the use of the `new` keyword. This creates an object based on the class. In this way, classes are often thought of as 'blueprints' for the object to be created.
-
-**index.js:**
-
-```javascript
-// Define the class 'Example'
-class Example {
-}
-
-// Create an object based on the class 'Example'
-let another = new Example();
-```
-
-In object-oriented terms, this process *constructs* a new object based on the class. In fact, JavaScript, like many other object-oriented programming languages, supplies a special function named *constructor()* for that purpose.
-
-When the *constructor()* function is added inside a class, it is the first function called when an object is being "constructed." (If not supplied, JavaScript will automatically generate one.)
-
-**index.js:**
-
-```javascript
-// Define the class 'Example'
-class Example {
-  // Create a constructor()
-  constructor() {
-    // Anything inside the constructor()
-    //  will be called during the
-    //  "construction" process.
-    console.log("This will be called!");
-  }
-}
-
-// Create an object based on the class
-//  'Example'
-let another = new Example();
-```
-
-The *constructor()* also serves an additional purpose: it allows a class to accept values during the "construction" process. Because it is a function, the *constructor()* function can also accept values.
-
-```javascript
-// Define the class 'Example'
-class Example {
-  // Because constructor() is a function,
-  //  it can also accept values.
-  constructor(value) {
-    // This will show '5'
-    console.log(value);
-  }
-}
-
-// Create an object based on the class
-//  'Example' and pass it a value, 5.
-let another = new Example(5);
-```
-
-##### Class Scope
-
-Within a class defined in JavaScript, the `this` refers to the class itself. Like with function scope, this allows a class to have properties and functions that can be accessed within itself and externally through referencing an object based on the class.
-
-**index.js:**
-
-```javascript
-// Define the class 'Example'
-class Example {
-  constructor() {
-    this.someValue = 5;
-  }
-}
-
-// Create an object based on the class 'Example'
-let another = new Example();
-
-// This will output '5'
-console.log(another.someValue);
-
-```
-
-#### *super()*
-
-The use of the keyword `extends` allows one class to "extend" another. However, what if there was a need to pass values from one *constructor()* to another? JavaScript provides the function *super()* to do that.
-
-In OOP terms, these classes exist a parent-child relationship. The first, original class is the 'parent' and the class that is extending it is the 'child'. Using the function *super()* calls the parent's *constructor()* and pass values to it.
-
-**index.js:**
-
-```javascript
-// Define the class 'Example'
-class Example {
-  // Define a constructor()
-  constructor(value) {
-    // Print the value to the console
-    console.log(value);
-  }
-}
-
-// Define the class 'Another'
-//  based on the class 'Example'
-class Another extends Example {
-  // Define a constructor()
-  constructor(value) {
-    // The parent's constructor()
-    super(value);
-  }
-}
-
-// Create an object based on 'Another'
-//  (which is based on 'Example')
-//
-// This will print the value 5
-//  because it is being passed
-//  from one constructor() to another.
-let another = new Another(5);
-```
-
-The keyword `super` also allows a child class to call a parent's *functions* as well. Because it has access to the parent's functions, it can call a function as if it was the parent through the keyword `super`.
-
-```javascript
-// Define the class 'Example'
-class Example {
-  // Define a function
-  parentExample() {
-    console.log("I'm the parent!");
-  }
-
-}
-
-// Define the class 'Another'
-//  based on the class 'Example'
-class Another extends Example {
-  // Define a constructor()
-  constructor() {
-    // Call the parent's constructor()
-    super();
-    // Call a function as if the parent
-    super.parentExample();
-  }
-}
-
-// Create an object based on 'Another'
-//  (which is based on 'Example')
-let another = new Another();
-```
-
-The one rule with using the keyword `super` in this way is that the parent's constructor must be called via *super()* before any other usages in the class. It has to be created before its functions can be called!
