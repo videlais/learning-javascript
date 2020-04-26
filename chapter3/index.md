@@ -5,16 +5,20 @@
   - [Built-in Objects](#built-in-objects)
     - [Strings](#strings)
       - [String Properties](#string-properties)
-      - [String Functions](#string-functions)
+      - [String Methods](#string-methods)
       - [Concatenation](#concatenation)
     - [Arrays](#arrays)
       - [Array Properties](#array-properties)
-      - [Array Functions](#array-functions)
+      - [Array Methods](#array-methods)
       - [Ordered Entries](#ordered-entries)
       - [Using Loops to Access Entries](#using-loops-to-access-entries)
     - [Object Literals](#object-literals)
       - [Object Properties](#object-properties)
-      - [Object Functions](#object-functions)
+      - [Object Methods](#object-methods)
+  - [Functions as Objects](#functions-as-objects)
+    - [ES5 Objects](#es5-objects)
+    - [Working with `this`](#working-with-this)
+    - [Prototypes](#prototypes)
   - [Classes](#classes)
     - [Creating `new` Objects](#creating-new-objects)
     - [`class` and `extends`](#class-and-extends)
@@ -25,16 +29,24 @@
 
 ## Introducing Objects
 
-(Properties)
-(Functions)
+There is often a need to create or use more complex data structures. Beyond simply numbers or strings values, JavaScript provides a concept to help with this: *objects*.
+
+In their most basic form, an object is defined through its two internal parts:
+
+- *Properties*: Values accessed via the object or internal to it.
+- *Methods*: Functions created, used, or defined in reference to the object.
+
+In JavaScript, objects are the *building-blocks* of understanding complex data structures and using advanced functionality. Built-in objects such as **String** and **Array** are used through the properties and methods created with those types of values.
 
 ## Built-in Objects
+
+TODO
 
 ### Strings
 
 #### String Properties
 
-#### String Functions
+#### String Methods
 
 #### Concatenation
 
@@ -53,9 +65,7 @@ stringExample = stringExample + ", world!";
 
 #### Array Properties
 
-
-#### Array Functions
-
+#### Array Methods
 
 Arrays are a special type of object where the order of the entries is important. They are created through using either an opening and closing square bracket together, `[]`, or using the **Array()** constructor.
 
@@ -106,13 +116,32 @@ while (position < arrayExample.length) {
 }
 ```
 
-
-
 ### Object Literals
 
 #### Object Properties
 
-#### Object Functions
+#### Object Methods
+
+## Functions as Objects
+
+### ES5 Objects
+
+```javascript
+function exampleFunction() {
+  this.internalValue = 5;
+  return this.internalValue;
+}
+
+var test = new exampleFunction();
+
+console.log(test.internalValue);
+```
+
+### Working with `this`
+
+When discussing objects, the internal functions to that object are often called its *methods*.
+
+### Prototypes
 
 ## Classes
 
@@ -291,6 +320,3 @@ let another = new Another();
 ```
 
 The one rule with using the keyword `super` in this way is that the parent's constructor must be called via *super()* before any other usages in the class. It has to be created before its functions can be called!
-
-
-
