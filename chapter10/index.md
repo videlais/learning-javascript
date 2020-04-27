@@ -118,3 +118,5 @@ class ExampleClass {
 console.log( ExampleClass.publicFieldExample );
 
 ```
+
+## Global Static Functions

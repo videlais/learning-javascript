@@ -1,11 +1,60 @@
 # Classes
 
-## ES5 Objects
+- [Classes](#classes)
+  - [Extending Objects](#extending-objects)
+    - [`new` Chains](#new-chains)
+    - [Complications with *prototype* and `this`](#complications-with-prototype-and-this)
+  - [ES6 Classes](#es6-classes)
+    - [Creating `new` Objects](#creating-new-objects)
+    - [`class` and `extends`](#class-and-extends)
+      - [`class`](#class)
+      - [*constructor()*](#constructor)
+        - [Class Scope](#class-scope)
+      - [*super()*](#super)
+
+## Extending Objects
+
+In the previous chapter, objects were reviewed as having properties and methods. Object Literals were also introduced as way to create objects based on using the opening and closing curly brackets.
+
+Prior to ES6, all objects in JavaScript used a concept called *prototypical inheritance*. Objects were part of something called the *prototype chain*.
+
+Every object, including the built-in objects, was given a property called *prototype* that defined what the "prototype" of each type of object had as properties and methods.
+
+As all objects were based these prototypes, it was possible to extend an object and give it more functionality.
+
+### `new` Chains
+
+The use of the *prototype* property creates a new property or method of *future* objects using the same pattern. In other words, if something new is created from that pattern, the prototype "chain" connects the new object with the changed pattern with the original pattern: there is a "chain" between them.
+
+```javascript
+function functionExample() {}
+functionExample.prototype.exampleProperty = 5;
+```
+
+However, as *prototype* only affects *future* objects, new objects have to be created based on the old pattern.
+
+To create a new copy of an object, the keyword `new` is used. When paired with functions, this creates a new copy of the function, including anything internal to it (properties and methods) and anything on its *prototype*.
+
+```javascript
+function functionExample() {}
+
+functionExample.prototype.anotherExampleProperty = 5;
+
+let newObject = new functionExample();
+
+// Outputs 6
+console.log(newObject.anotherExampleProperty);
+```
+
+In JavaScript ES5, it was extremely common to create complex objects through adding more properties and methods to an object through writing a "blueprint" for it and then creating a `new` object based on the pattern, gaining everything on the *prototype* as they were part of the object itself.
+
+### Complications with *prototype* and `this`
+
+As functions are a type of object, it is possible to add properties to them. Inside a function, the `this` keyword can be used to add new properties and methods.
 
 ```javascript
 function exampleFunction() {
   this.internalValue = 5;
-  return this.internalValue;
 }
 
 var test = new exampleFunction();
@@ -13,11 +62,70 @@ var test = new exampleFunction();
 console.log(test.internalValue);
 ```
 
-### Working with `this`
+The `this` keyword refers to "this object" and allows an function (object) to refer to itself and any properties and methods that are a part of it.
 
-When discussing objects, the internal functions to that object are often called its *methods*.
+```javascript
+function exampleFunction() {
+  
+  this.internalValue = 5;
+  
+  this.internalMethod = () => {
+    return this.internalValue;
+  };
 
-### Prototypes
+}
+
+var test = new exampleFunction();
+
+// Outputs 5
+console.log(test.internalMethod());
+```
+
+However, the use of `this` poses an interesting challenge as it intersects with *prototype*.
+
+```javascript
+function exampleFunction() {
+  
+  this.internalValue = 5;
+  
+  this.internalMethod = () => {
+    return this.anotherValue;
+  };
+
+}
+
+exampleFunction.prototype.anotherValue = 7;
+
+var test = new exampleFunction();
+
+// Outputs 7
+console.log(test.internalMethod());
+```
+
+In the above code, the object **test** can access the property *anotherValue* because it is part of the prototype it gained through creating a new copy of the existing pattern of *exampleFunction()* and the property added via *prototype*.
+
+However, if tested with *hasOwnProperty()*, the property *anotherValue* would return `false`.
+
+```javascript
+function exampleFunction() {
+  
+  this.internalValue = 5;
+  
+  this.internalMethod = () => {
+    return this.anotherValue;
+  };
+
+}
+
+exampleFunction.prototype.anotherValue = 7;
+
+var test = new exampleFunction();
+
+// Outputs `false`
+console.log(test.hasOwnProperty("anotherValue"));
+```
+
+The property *anotherValue* is *not* a property of *exampleFunction()*. It is a property of the *prototype* of *exampleFunction()*. This may seem a technicality, but it poses complications and challenges on trying to let one object be based on previous objects.
 
 ## ES6 Classes
 

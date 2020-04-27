@@ -10,6 +10,14 @@
       - [Using Loops to Access Entries](#using-loops-to-access-entries)
       - [Array Methods](#array-methods)
         - [*copyWithin()*](#copywithin)
+        - [*fill(value, begin, end)*](#fillvalue-begin-end)
+        - [*pop()*](#pop)
+        - [*push(value, value...)*](#pushvalue-value)
+        - [*reverse()*](#reverse)
+        - [*shift()*](#shift)
+        - [*sort()*](#sort)
+        - [*splice(start[, deleteCount[, item1[, item2[, ...]]]])*](#splicestart-deletecount-item1-item2)
+        - [*unshift()*](#unshift)
     - [Strings](#strings)
       - [String Properties](#string-properties)
         - [String *length*](#string-length)
@@ -39,8 +47,9 @@
       - [Concatenation](#concatenation)
       - [Template Literals](#template-literals)
     - [Object Literals](#object-literals)
-      - [Object Properties](#object-properties)
       - [Object Methods](#object-methods)
+        - [*hasOwnProperty(value)*](#hasownpropertyvalue)
+        - [*toString()*](#tostring)
 
 ## Introducing Objects
 
@@ -127,6 +136,38 @@ while (position < arrayExample.length) {
 ##### *copyWithin()*
 
 Copies part of an array into another part of the array.
+
+##### *fill(value, begin, end)*
+
+Fills an array with *value* from position *begin* to *end*. If *begin* and *end* are not included, fills array from beginning to end.
+
+##### *pop()*
+
+Removes the last element in the array and returns it.
+
+##### *push(value, value...)*
+
+Adds one or more values to an array and returns the new length.
+
+##### *reverse()*
+
+Reverses the positions of values in an array.
+
+##### *shift()*
+
+Removes the first element and returns it.
+
+##### *sort()*
+
+Sorts the elements of the array in place based on converting their values into strings and placing the values in ascending order.
+
+##### *splice(start[, deleteCount[, item1[, item2[, ...]]]])*
+
+Removes, replaces, or adds elements to an array in place.
+
+##### *unshift()*
+
+Add one or more elements to the front of an array and returns the new length.
 
 ### Strings
 
@@ -284,7 +325,56 @@ No concatenation is needed. The template literal handles all of the work to comb
 
 ### Object Literals
 
-#### Object Properties
+Beyond the build-in objects like Functions, Arrays, and String, it is also possible to create an object using open and closing curly brackets in JavaScript.
+
+Through including the properties or methods as comma-separated values, it is possible to *literally* give an object different parts. When written in this way, it is called an *object literal*.
+
+```javascript
+let objectExample = {
+  property1: 1,
+  property2: 2
+};
+```
+
+Property names in the *object literal* form do not have quotations around them. However, any string values would have quotation marks.
+
+Any objects created in this way, as with all other objects, have some built-in methods.
 
 #### Object Methods
 
+##### *hasOwnProperty(value)*
+
+Returns if *value* exists as a property within the object.
+
+```javascript
+let objectExample = {
+  someProperty: 1
+};
+
+// Outputs `true`
+console.log(objectExample.hasOwnProperty("someProperty"));
+```
+
+##### *toString()*
+
+Returns a string representing the object.
+
+```javascript
+let objectExample = {};
+
+// Outputs [object Object]
+console.log(objectExample.toString());
+```
+
+While all objects have this method, in nearly all cases, it will need to be overwritten to return something more useful than its type.
+
+```javascript
+let objectExample = {
+  toString: () => {
+    return "I'm an object!";
+  }
+};
+
+// Outputs "I'm an object!""
+console.log(objectExample.toString());
+```
