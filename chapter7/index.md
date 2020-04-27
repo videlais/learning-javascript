@@ -1,66 +1,147 @@
+# Public, Static and Private Instance Fields
 
-### Destructing Assignment
+## Public Instance Fields
 
-Often, only a few properties or the first couple of positions of an array are needed. To help with those use cases, JavaScript ES6 also adds "destructing" functionality as part of assignment operations.
+In JavaScript ES6, it is possible to create a *public instance field*.
 
-In JavaScript ES5, it was possible to assign the value of an object's property in the following manner:
+What this means is that a field (a property or function) is created outside of the *constructor()* function within a class. It is *public* because it acts like a property of the class and is a *field* because it is defined outside of using the `this` keyword.
 
-```javascript
-let exampleObject = {
-  someProperty: 5
-};
-
-
-let someValue = exampleObject.someProperty;
-```
-
-However, where this same operation occurs most frequently is not in the above use case, but a more common one in Node.js: *require()*-ing in an object exported by another file.
-
-**Example.js:**
+While still an experimental feature in some JavaScript contexts, many already support this ES6 feature.
 
 ```javascript
-module.exports = {
-  oneProperty: 1,
-  twoProperty: 2,
-  threeProperty: 3
-};
+class Element {
+  instanceExample = 5;
+}
 ```
 
-**index.js:**
+In the above code, the value of the public instance field *instanceExample* is 5. This is a property that is added *outside* of the normal usage of the *constructor()*, but is part of any instance of the class.
+
+Instance field scan hold any value, which means they can also hold the value of a function.
 
 ```javascript
-let example = require('./Example.js');
-
-let someValue = example.oneProperty;
+class Element {
+  instanceFunction = function() {
+    // Do something
+  };
+}
 ```
 
-Instead of pulling in additional properties not needed or used in the file, the assignment operation can be paired with the ability to 'destruct' an object.
-
-**Example.js:**
+Holding the value of a function also means they can hold arrow functions as well. This opens the ability to have a property that is an arrow function whose `this` is the class itself.
 
 ```javascript
-module.exports = {
-  oneProperty: 1,
-  twoProperty: 2,
-  threeProperty: 3
-};
+class Element {
+  instanceArrowFunction = () => {
+    // Do something
+  };
+}
 ```
 
-**index.js:**
+In the above code, the value of the property *arrowFunctionExample* is an arrow function. Using public instance fields allows the value of a function to use the special context of arrow functions: their `this` is defined where they are, not where they are used.
+
+Instance fields can also have computed names. It is possible to create a new property (instance field) using the same general syntax used with an object literal: square brackets around the property name.
 
 ```javascript
-let { oneProperty } = require('./Example.js');
+const fieldName = "ExampleName";
 
-let someValue = oneProperty;
+class ExampleClass {
+  
+  ['new' + fieldName] = 5;
+  
+  exampleFunction() {
+    console.log(this.newExampleName);
+  }
+
+}
+
+let e = new ExampleClass();
+
+console.log( e.exampleFunction() );
 ```
 
-In the above example, only the property *oneProperty* was *require()*'d into the file. Everything else was ignored. What was previously the object **example** became an object through which the property *oneProperty* was destructed.
+In the above code, the property *newExampleName* is computed inside of the square brackets used as part of the instance field. It is computed and then added to the instance and can be used by any object based on the class.
 
-This functionality also works on arrays, too. Like with objects where the use of the curly brackets marks the object, it is also possible to use square brackets and give names matching the position of values within an array to destruct it.
+### Private Instance Fields
+
+Normally, all properties of a class are public in JavaScript. Their values can be accessed through their names. With private instance fields, this level of access can be changed. Values can be set to *private* so that only the class, and not even its children, can access it.
+
+To create private instance fields, the hash symbol, `#`, can be used. It can only be used with fields and cannot be used for properties defined inside of a *constructor()* function.
 
 ```javascript
-// Destruct an array
-let [one, two] = [5, 6, 7];
-// Print the value 6
-console.log(two);
+class ExampleClass {
+  
+  #privateValue = 6;
+  
+  exampleFunction() {
+    console.log(this.#privateValue);
+  }
+
+}
+
+let e = new ExampleClass();
+
+console.log( e.exampleFunction() );
 ```
+
+Often called "hash names," as they have the hash symbol in front of them, they can *only* be accessed in the class in which they appear. They cannot be inherited by child classes, and their values cannot be accessed outside the class.
+
+### Static Class Properties and Methods
+
+Some JavaScript environments support using the experimental keyword `static`. It can be paired with both methods and public fields in a class.
+
+When used with a class, it changes a method from being part of an instance (object) to being part of the *class* itself. It creates a single copy across *all* instances of the class, making it "static" to the class. It also, because it is static, comes with some extra rules.
+
+A static method:
+
+- Can be called using the name of the class
+- Can only call or reference other static methods and values
+- Cannot use `this`
+- Cannot use *super()*
+
+As the method is static to the class and not any particular instance, it does not have access to `this` or *super()*. However, it can be called using the name of the class outside of any instance of the class.
+
+```javascript
+class ExampleClass {
+  static staticMethod() {
+    return 'Static method has been called';
+  }
+}
+
+console.log( ExampleClass.staticMethod() );
+```
+
+A static public field in a class works the same as a static method: it can be used with the name of the class outside of any instance. It is "static" to the class, after all.
+
+```javascript
+class ExampleClass {
+
+  static publicFieldExample = 5;
+
+}
+
+console.log( ExampleClass.publicFieldExample );
+
+```
+
+## Global Static Functions
+
+Many of the built-in global objects in JavaScript have their own static methods.
+
+### Object Static Methods
+
+#### *Object.assign(objectA, objectB)*
+
+Copies all of the own properties from **objectA** to **objectB**.
+
+#### *Object.create(objectA)*
+
+Create a new object using **objectA** as its prototype.
+
+#### *Object.defineProperty(object, property)*
+
+Defines a new *property* on **object**. This is passed as an object literal, setting its accessor descriptors.
+
+#### *Object.defineProperties(object, properties)*
+
+Defines multiple properties found within the object literal *properties* on the object **object**.
+
+TODO

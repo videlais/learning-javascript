@@ -2,14 +2,14 @@
 
 - [Classes](#classes)
   - [Extending Objects](#extending-objects)
-    - [`new` Chains](#new-chains)
+    - [Prototype Chains](#prototype-chains)
     - [Complications with *prototype* and `this`](#complications-with-prototype-and-this)
   - [ES6 Classes](#es6-classes)
     - [Creating `new` Objects](#creating-new-objects)
     - [`class` and `extends`](#class-and-extends)
       - [`class`](#class)
       - [*constructor()*](#constructor)
-        - [Class Scope](#class-scope)
+    - [Class Scope](#class-scope)
       - [*super()*](#super)
 
 ## Extending Objects
@@ -22,7 +22,7 @@ Every object, including the built-in objects, was given a property called *proto
 
 As all objects were based these prototypes, it was possible to extend an object and give it more functionality.
 
-### `new` Chains
+### Prototype Chains
 
 The use of the *prototype* property creates a new property or method of *future* objects using the same pattern. In other words, if something new is created from that pattern, the prototype "chain" connects the new object with the changed pattern with the original pattern: there is a "chain" between them.
 
@@ -33,7 +33,7 @@ functionExample.prototype.exampleProperty = 5;
 
 However, as *prototype* only affects *future* objects, new objects have to be created based on the old pattern.
 
-To create a new copy of an object, the keyword `new` is used. When paired with functions, this creates a new copy of the function, including anything internal to it (properties and methods) and anything on its *prototype*.
+To create a new copy of an object, the keyword `new` is used. When paired with functions, this creates a new copy of the function, including anything internal to it (properties and methods) and on its *prototype*.
 
 ```javascript
 function functionExample() {}
@@ -131,13 +131,43 @@ The property *anotherValue* is *not* a property of *exampleFunction()*. It is a 
 
 ### Creating `new` Objects
 
+As was previously covered, the `new` keyword creates a new object based on an existing one. When used with functions, this created a enw object based on the function and any of its own internal properties and methods.
+
+However, as was pointed out in the discussion of `this` and *prototype*, adding new properties becomes complicated when comparing what is a "own property" or part of the prototype chain from some other source.
+
+This is additionally complicated by objects based on others.
+
+```javascript
+// Create a Function object
+function A() {
+  // Create property
+  this.value = 5;
+}
+
+// Extend the prototype
+A.prototype.anotherValue = 7;
+
+// Create a second Function object
+function B() {
+}
+
+// This won't work!
+B.prototype = A.prototype;
+```
+
+It would seem to make sense that assigning one object the prototype of another would make it a "copy." However, that is not how prototype chains work!
+
+Trying to "inherit" from multiple objects to mix in different parts, then, becomes more complicated. Instead of doing it in a single line, each individual property and method would need to be copied over from the original to the new object.
+
 ### `class` and `extends`
 
-Starting with ES6, JavaScript is now a true object-oriented programming language. Previous to ES6, it was possible to replicate most object-oriented programming functionality. However, ES6 added two important keywords, `class` and `extends`, that enabled full OOP support.
+Starting with ES6, JavaScript is now a true object-oriented programming (OOP) language that allows objects to inherit from one another.
+
+Previous to ES6, it was possible to replicate most object-oriented programming functionality. However, ES6 added two important keywords, `class` and `extends`, that enabled full OOP support.
 
 #### `class`
 
-The `class` keyword is used to create classes in JavaScript. It defines a set of properties and functions that exist within the class as enclosed within curly brackets.
+The `class` keyword is used to create classes in JavaScript. It defines a set of properties and methods that exist within the class as enclosed within curly brackets.
 
 ```javascript
 class Example {
@@ -146,6 +176,8 @@ class Example {
 ```
 
 When used with the `class` keyword, `extends` enables inheritance between classes. In object-oriented programming terms, this allows one object to 'extend' an existing one through gaining everything it has and adding more.
+
+This solves the previous issue with prototype chaining in JavaScript ES5! No need to copy properties and methods. Now, in ES6, the internal code will create a new object based on the previous pattern.
 
 **index.js:**
 
@@ -161,7 +193,7 @@ class Another extends Example {
 
 #### *constructor()*
 
-Classes are created through the use of the `new` keyword. This creates an object based on the class. In this way, classes are often thought of as 'blueprints' for the object to be created.
+Classes are created through the use of the `new` keyword. This creates an object based on the class. In this way, classes are often thought of as 'blueprints' for future object to be created.
 
 **index.js:**
 
@@ -215,11 +247,9 @@ class Example {
 let another = new Example(5);
 ```
 
-##### Class Scope
+### Class Scope
 
-Within a class defined in JavaScript, the `this` refers to the class itself. Like with function scope, this allows a class to have properties and functions that can be accessed within itself and externally through referencing an object based on the class.
-
-**index.js:**
+Within a class defined in JavaScript, the `this` refers to the class itself. Like with function scope, this allows a class to have properties that can be accessed within itself and externally through referencing an object based on the class.
 
 ```javascript
 // Define the class 'Example'
@@ -234,8 +264,29 @@ let another = new Example();
 
 // This will output '5'
 console.log(another.someValue);
-
 ```
+
+This is also goes for methods, too.
+
+```javascript
+
+// Define the class 'Example'
+class Example {
+  constructor() {
+  }
+  addedMethod() {
+    console.log("See?");
+  }
+}
+
+// Create an object based on the class 'Example'
+let another = new Example();
+
+// This will output 'See?'
+another.addedMethod();
+```
+
+Instead of being defined through the `this` keyword as part of the *constructor()*, however, methods are added to the class.
 
 #### *super()*
 
@@ -274,7 +325,7 @@ class Another extends Example {
 let another = new Another(5);
 ```
 
-The keyword `super` also allows a child class to call a parent's *functions* as well. Because it has access to the parent's functions, it can call a function as if it was the parent through the keyword `super`.
+The keyword `super` also allows a child class to call a parent's *methods* as well. Because it has access to the parent's methods, it can call a method as if it was the parent through the keyword `super`.
 
 ```javascript
 // Define the class 'Example'
@@ -303,4 +354,4 @@ class Another extends Example {
 let another = new Another();
 ```
 
-The one rule with using the keyword `super` in this way is that the parent's constructor must be called via *super()* before any other usages in the class. It has to be created before its functions can be called!
+The one rule with using the keyword `super` in this way is that the parent's constructor must be called via *super()* before any other usages in the class. It has to be created before its methods can be called!

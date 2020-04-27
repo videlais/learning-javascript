@@ -10,15 +10,12 @@ This is an open source textbook. Remixing, reusing, or improving it through pull
 - [Chapter 3: Reviewing Objects](chapter3/index.md)
 - [Chapter 4: Classes](chapter4/index.md)
 - [Chapter 5: Promises](chapter5/index.md)
-- [Chapter 6: `async` and `await`](chapter6/index.md)
-- [Chapter 7: Destructing Assignment](chapter7/index.md)
-- [Chapter 8: Spread Operator](chapter8/index.md)
-- [Chapter 9: Default Parameters](chapter9/index.md)
-- [Chapter 10: Public, Static and Private Instance Fields](chapter10/index.md)
-- [Chapter 11: `Symbol`](chapter11/index.md)
-- [Chapter 12: Iterators](chapter12/index.md)
-- [Chapter 13: `Set()` and `Map()`](chapter13/index.md)
-- [Chapter 14: Generator Functions](chapter14/index.md)
+- [Chapter 6: Destructing Assignment, Spread Operator, and Default Parameters](chapter6/index.md)
+- [Chapter 7: Public, Static and Private Instance Fields](chapter7/index.md)
+- [Chapter 8: `Symbol`](chapter8/index.md)
+- [Chapter 9: Iterators](chapter9/index.md)
+- [Chapter 10: `Set()` and `Map()`](chapter10/index.md)
+- [Chapter 11: Generator Functions](chapter11/index.md)
 
 ---
 
