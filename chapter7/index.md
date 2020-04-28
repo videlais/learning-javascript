@@ -1,5 +1,92 @@
 # Public, Static and Private Instance Fields
 
+- [Public, Static and Private Instance Fields](#public-static-and-private-instance-fields)
+  - [Public Instance Fields](#public-instance-fields)
+    - [Private Instance Fields](#private-instance-fields)
+    - [Static Class Properties and Methods](#static-class-properties-and-methods)
+  - [Global Static Functions](#global-static-functions)
+    - [Object Static Methods](#object-static-methods)
+      - [*Object.assign(objectA, objectB)*](#objectassignobjecta-objectb)
+      - [*Object.create(objectA)*](#objectcreateobjecta)
+      - [*Object.defineProperty(object, property)*](#objectdefinepropertyobject-property)
+      - [*Object.defineProperties(object, properties)*](#objectdefinepropertiesobject-properties)
+      - [*Object.entries(objectA)*](#objectentriesobjecta)
+      - [*Object.freeze(objectA)*](#objectfreezeobjecta)
+      - [*Object.getOwnPropertyDescriptor(objectA, propertyB)*](#objectgetownpropertydescriptorobjecta-propertyb)
+      - [*Object.getOwnPropertyDescriptors(objectA)*](#objectgetownpropertydescriptorsobjecta)
+      - [*Object.getOwnPropertyNames(objectA)*](#objectgetownpropertynamesobjecta)
+      - [*Object.getOwnPropertySymbols(objectA)*](#objectgetownpropertysymbolsobjecta)
+      - [*Object.is(value1, value2)*](#objectisvalue1-value2)
+      - [*Object.isFrozen(objectA)*](#objectisfrozenobjecta)
+      - [*Object.isSealed(objectA)*](#objectissealedobjecta)
+      - [*Object.keys(objectA)*](#objectkeysobjecta)
+      - [*Object.seal(objectA)*](#objectsealobjecta)
+      - [*Object.values(objectA)*](#objectvaluesobjecta)
+    - [Math Static Methods](#math-static-methods)
+      - [*Math.abs(x)*](#mathabsx)
+      - [*Math.acos(x)*](#mathacosx)
+      - [*Math.acosh(x)*](#mathacoshx)
+      - [*Math.asin(x)*](#mathasinx)
+      - [*Math.asinh(x)*](#mathasinhx)
+      - [*Math.atan(x)*](#mathatanx)
+      - [*Math.atanh(x)*](#mathatanhx)
+      - [*Math.atan2(y, x)*](#mathatan2y-x)
+      - [*Math.cbrt(x)*](#mathcbrtx)
+      - [*Math.ceil(x)*](#mathceilx)
+      - [*Math.clz32(x)*](#mathclz32x)
+      - [*Math.cos(x)*](#mathcosx)
+      - [*Math.cosh(x)*](#mathcoshx)
+      - [*Math.exp(x)*](#mathexpx)
+      - [*Math.expm1(x)*](#mathexpm1x)
+      - [*Math.floor(x)*](#mathfloorx)
+      - [*Math.fround(x)*](#mathfroundx)
+      - [*Math.hypot([x[, y[, ...]]])*](#mathhypotx-y)
+      - [*Math.imul(x, y)*](#mathimulx-y)
+      - [*Math.log(x)*](#mathlogx)
+      - [*Math.log1p(x)*](#mathlog1px)
+      - [*Math.log10(x)*](#mathlog10x)
+      - [*Math.log2(x)*](#mathlog2x)
+      - [*Math.max([x[, y[, ...]]])*](#mathmaxx-y)
+      - [*Math.min([x[, y[, ...]]])*](#mathminx-y)
+      - [*Math.pow(x, y)*](#mathpowx-y)
+      - [*Math.random()*](#mathrandom)
+      - [*Math.round(x)*](#mathroundx)
+      - [*Math.sign(x)*](#mathsignx)
+      - [*Math.sin(x)*](#mathsinx)
+      - [*Math.sinh(x)*](#mathsinhx)
+      - [*Math.sqrt(x)*](#mathsqrtx)
+      - [*Math.tan(x)*](#mathtanx)
+      - [*Math.tanh(x)*](#mathtanhx)
+      - [*Math.trunc(x)*](#mathtruncx)
+    - [Number Static Methods](#number-static-methods)
+      - [*Number.isNaN()*](#numberisnan)
+      - [*Number.isFinite()*](#numberisfinite)
+      - [*Number.isInteger()*](#numberisinteger)
+      - [*Number.isSafeInteger()*](#numberissafeinteger)
+      - [*Number.parseFloat(string)*](#numberparsefloatstring)
+      - [*Number.parseInt(string, [radix])*](#numberparseintstring-radix)
+    - [Console Static Methods](#console-static-methods)
+      - [*console.assert()*](#consoleassert)
+      - [*console.clear()*](#consoleclear)
+      - [*console.count()*](#consolecount)
+      - [*console.countReset()*](#consolecountreset)
+      - [*console.debug()*](#consoledebug)
+      - [*console.dir()*](#consoledir)
+      - [*console.dirxml()*](#consoledirxml)
+      - [*console.error()*](#consoleerror)
+      - [*console.group()*](#consolegroup)
+      - [*console.groupCollapsed()*](#consolegroupcollapsed)
+      - [*console.groupEnd()*](#consolegroupend)
+      - [*console.info()*](#consoleinfo)
+      - [*console.log()*](#consolelog)
+      - [*console.table()*](#consoletable)
+      - [*console.time()*](#consoletime)
+      - [*console.timeEnd()*](#consoletimeend)
+      - [*console.timeLog()*](#consoletimelog)
+      - [*console.trace()*](#consoletrace)
+      - [*console.warn()*](#consolewarn)
+    - [JSON Static Methods](#json-static-methods)
+
 ## Public Instance Fields
 
 In JavaScript ES6, it is possible to create a *public instance field*.
@@ -143,5 +230,301 @@ Defines a new *property* on **object**. This is passed as an object literal, set
 #### *Object.defineProperties(object, properties)*
 
 Defines multiple properties found within the object literal *properties* on the object **object**.
+
+#### *Object.entries(objectA)*
+
+Returns an array of `[key, value]` pairs for all properties of an object. (Does not access the prototype chain.)
+
+#### *Object.freeze(objectA)*
+
+Prevents any changes to the object, its properties and methods, and includes to its prototype chain.
+
+#### *Object.getOwnPropertyDescriptor(objectA, propertyB)*
+
+Returns the descriptor of *propertyB* within **objectA**.
+
+#### *Object.getOwnPropertyDescriptors(objectA)*
+
+Returns an object containing all descriptors of the properties of the *objectA*.
+
+#### *Object.getOwnPropertyNames(objectA)*
+
+Returns an array of all own properties of *objectA*.
+
+#### *Object.getOwnPropertySymbols(objectA)*
+
+Returns an array of **Symbol** properties of *objectA*.
+
+#### *Object.is(value1, value2)*
+
+Returns `true` if **value1** and **value2** are equal. (Does not convert values into a type and does **not** return if all of the properties of each object are also equal.)
+
+#### *Object.isFrozen(objectA)*
+
+Returns if **objectA** is frozen or not.
+
+#### *Object.isSealed(objectA)*
+
+Returns if an object is sealed or not.
+
+#### *Object.keys(objectA)*
+
+Returns an array of the names of all of the properties of **objectA**.
+
+#### *Object.seal(objectA)*
+
+Seals **objectA**. Prevents properties from being deleted or changed in any way.
+
+#### *Object.values(objectA)*
+
+Returns the values of all properties of **objectA**.
+
+### Math Static Methods
+
+#### *Math.abs(x)*
+
+Returns the absolute value of a number.
+
+#### *Math.acos(x)*
+
+Returns the arccosine of a number.
+
+#### *Math.acosh(x)*
+
+Returns the hyperbolic arccosine of a number.
+
+#### *Math.asin(x)*
+
+Returns the arcsine of a number.
+
+#### *Math.asinh(x)*
+
+Returns the hyperbolic arcsine of a number.
+
+#### *Math.atan(x)*
+
+Returns the arctangent of a number.
+
+#### *Math.atanh(x)*
+
+Returns the hyperbolic arctangent of a number.
+
+#### *Math.atan2(y, x)*
+
+Returns the arctangent of the quotient of its arguments.
+
+#### *Math.cbrt(x)*
+
+Returns the cube root of a number.
+
+#### *Math.ceil(x)*
+
+Returns the smallest integer greater than or equal to a number
+
+#### *Math.clz32(x)*
+
+Returns the number of leading zeroes of a 32-bit integer.
+
+#### *Math.cos(x)*
+
+Returns the cosine of a number.
+
+#### *Math.cosh(x)*
+
+Returns the hyperbolic cosine of a number.
+
+#### *Math.exp(x)*
+
+Returns E^x, where x is the argument, and E is Euler's constant (2.718..., the base of the natural logarithm).
+
+#### *Math.expm1(x)*
+
+Returns subtracting 1 from exp(x).
+
+#### *Math.floor(x)*
+
+Returns the largest integer less than or equal to a number.
+
+#### *Math.fround(x)*
+
+Returns the nearest single precision float representation of a number.
+
+#### *Math.hypot([x[, y[, ...]]])*
+
+Returns the square root of the sum of squares of its arguments.
+
+#### *Math.imul(x, y)*
+
+Returns the result of a 32-bit integer multiplication.
+
+#### *Math.log(x)*
+
+Returns the natural logarithm (㏒e; also, ㏑) of a number.
+
+#### *Math.log1p(x)*
+
+Returns the natural logarithm (㏒e; also ㏑) of 1 + x for a number.
+
+#### *Math.log10(x)*
+
+Returns the base 10 logarithm of a number.
+
+#### *Math.log2(x)*
+
+Returns the base 2 logarithm of a number.
+
+#### *Math.max([x[, y[, ...]]])*
+
+Returns the largest of zero or more numbers.
+
+#### *Math.min([x[, y[, ...]]])*
+
+Returns the smallest of zero or more numbers.
+
+#### *Math.pow(x, y)*
+
+Returns base to the exponent power, that is, xy.
+
+#### *Math.random()*
+
+Returns a pseudo-random number between 0 and 1.
+
+#### *Math.round(x)*
+
+Returns the value of a number rounded to the nearest integer.
+
+#### *Math.sign(x)*
+
+Returns the sign of the x, indicating whether x is positive, negative, or zero.
+
+#### *Math.sin(x)*
+
+Returns the sine of a number.
+
+#### *Math.sinh(x)*
+
+Returns the hyperbolic sine of a number.
+
+#### *Math.sqrt(x)*
+
+Returns the positive square root of a number.
+
+#### *Math.tan(x)*
+
+Returns the tangent of a number.
+
+#### *Math.tanh(x)*
+
+Returns the hyperbolic tangent of a number.
+
+#### *Math.trunc(x)*
+
+Returns the integer part of the number x, removing any fractional digits.
+
+### Number Static Methods
+
+#### *Number.isNaN()*
+
+Determine whether the passed value is NaN.
+
+#### *Number.isFinite()*
+
+Determine whether the passed value is a finite number.
+
+#### *Number.isInteger()*
+
+Determine whether the passed value is an integer.
+
+#### *Number.isSafeInteger()*
+
+Determine whether the passed value is a safe integer (number between -(253 - 1) and 253 - 1).
+
+#### *Number.parseFloat(string)*
+
+This is the same as the global parseFloat() function.
+
+#### *Number.parseInt(string, [radix])*
+
+This is the same as the global parseInt() function.
+
+### Console Static Methods
+
+#### *console.assert()*
+
+Log a message and stack trace to console if the first argument is false.
+
+#### *console.clear()*
+
+Clear the console.
+
+#### *console.count()*
+
+Log the number of times this line has been called with the given label.
+
+#### *console.countReset()*
+
+Resets the value of the counter with the given label.
+
+#### *console.debug()*
+
+Outputs a message to the console with the log level "debug".
+
+#### *console.dir()*
+
+Displays an interactive listing of the properties of a specified JavaScript object. This listing lets you use disclosure triangles to examine the contents of child objects.
+
+#### *console.dirxml()*
+
+Displays an XML/HTML Element representation of the specified object if possible or the JavaScript Object view if it is not possible.
+
+#### *console.error()*
+
+Outputs an error message. You may use string substitution and additional arguments with this method.
+
+#### *console.group()*
+
+Creates a new inline group, indenting all following output by another level. To move back out a level, call groupEnd().
+
+#### *console.groupCollapsed()*
+
+Creates a new inline group, indenting all following output by another level. However, unlike group() this starts with the inline group collapsed requiring the use of a disclosure button to expand it. To move back out a level, call groupEnd().
+
+#### *console.groupEnd()*
+
+Exits the current inline group.
+
+#### *console.info()*
+
+Informative logging of information. You may use string substitution and additional arguments with this method.
+
+#### *console.log()*
+
+For general output of logging information. You may use string substitution and additional arguments with this method.
+
+#### *console.table()*
+
+Displays tabular data as a table.
+
+#### *console.time()*
+
+Starts a timer with a name specified as an input parameter. Up to 10,000 simultaneous timers can run on a given page.
+
+#### *console.timeEnd()*
+
+Stops the specified timer and logs the elapsed time in seconds since it started.
+
+#### *console.timeLog()*
+
+Logs the value of the specified timer to the console.
+
+#### *console.trace()*
+
+Outputs a stack trace.
+
+#### *console.warn()*
+
+Outputs a warning message. You may use string substitution and additional arguments with this method.
+
+### JSON Static Methods
 
 TODO
