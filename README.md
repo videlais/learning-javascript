@@ -14,7 +14,7 @@ This is an open source textbook. Remixing, reusing, or improving it through pull
 - [Chapter 7: Public, Static and Private Instance Fields](chapter7/index.md)
 - [Chapter 8: `Symbol`](chapter8/index.md)
 - [Chapter 9: Iterators](chapter9/index.md)
-- [Chapter 10: `Set()` and `Map()`](chapter10/index.md)
+- [Chapter 10: **Set()**, **Map()**, **WeakSet()**, and **WeakMap()**](chapter10/index.md)
 - [Chapter 11: Generator Functions](chapter11/index.md)
 
 ---
