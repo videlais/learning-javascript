@@ -15,7 +15,7 @@ In programming terminology, a *symbol* is a data type with a unique value or for
 
 In JavaScript ES6, symbols are created and used with the keyword `Symbol`.
 
-Every use of the global constructor `Symbol()` *always* creates a unique value where the following is always true:
+Every use of the global constructor **Symbol()** *always* creates a unique value where the following is always true:
 
 ```javascript
 Symbol() !== Symbol()
@@ -46,7 +46,7 @@ exampleObject[exampleSymbol] = 1;
 console.log(exampleObject[exampleSymbol]);
 ```
 
-In the above code, a Symbol is created through the function `Symbol()`. It was given a description, "name", and was then used to augment an existing object through using its computed value to define a new property.
+In the above code, a Symbol is created through the constructor **Symbol()**. It was given a description, "name", and was then used to augment an existing object through using its computed value to define a new property.
 
 **Note:** The description of a Symbol is not its value. It is what its own property *description* will be set to internally. This can be used for debugging purposes.
 
@@ -107,7 +107,7 @@ class Example {
 console.log('some text'.search(new Example('tex')));
 ```
 
-**Note:** The use of `Symbol.search`, `Symbol.match`, or `Symbol.replace` must be used with the corresponding **String.prototype** functions of *search()*, *match()*, and *replace()*.
+**Note:** The use of `Symbol.search`, `Symbol.match`, or `Symbol.replace` must be used with the corresponding **String.prototype** functions of **search()**, **match()**, and **replace()**.
 
 ## `Symbol` Shorthand
 
@@ -180,6 +180,6 @@ console.log (p[exampleSymbol]);
 
 ### Hidden Properties
 
-Any use of `Symbol` with an object creates a "hidden" property. This means they do not appear when *Object.keys()* or *Object.getOwnPropertyNames()* is used with the object. They augment the object, but are not a true property of it.
+Any use of `Symbol` with an object creates a "hidden" property. This means they do not appear when **Object.keys()** or **Object.getOwnPropertyNames()** is used with the object. They augment the object, but are not a true property of it.
 
-To access all properties defined using `Symbol`, the function *Object.getOwnPropertySymbols()* can be used. This acts like *Object.getOwnPropertyNames()*, but only returns properties created using `Symbol`.
+To access all properties defined using `Symbol`, the function **Object.getOwnPropertySymbols()** can be used. This acts like **Object.getOwnPropertyNames()**, but only returns properties created using `Symbol`.

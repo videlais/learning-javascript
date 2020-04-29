@@ -132,9 +132,9 @@ In the above code, the object has properties which are, themselves, arrays. The 
 
 Like other uses of `Symbol`, an object can be augmented with additional properties. One of the properties that can be added is *iterator*.
 
-Defined iterators follow the pattern of `[Symbol.iterator] = function()` where the function must return an object literal with a property named `next()` that must, itself, return an object literal with at least two properties: *done* and *value*.
+Defined iterators follow the pattern of `[Symbol.iterator] = function()` where the function must return an object literal with a property named **next()** that must, itself, return an object literal with at least two properties: *done* and *value*.
 
-The property *value* of the *next()* function is what is returned for the current loop. The property *done* is a Boolean value that marks if the loop is finished or not.
+The property *value* of the **next()** function is what is returned for the current loop. The property *done* is a Boolean value that marks if the loop is finished or not.
 
 ```javascript
 // Create an object literal
@@ -234,4 +234,4 @@ for(let entry of objectExample) {
 
 In the above code, an object literal is created with two properties, *numbers* and *strings*. These are arrays that hold, for *numbers*, numbers and, for *string*, a series of String values.
 
-The iterator function first converts the object into an array, saves the position, and the current object. Each loop, within the *next()* function, the position is used to get the current outer property value. This is used to access the internal property (array values) and add a string value, "Internal array value: " in front of each.
+The iterator function first converts the object into an array, saves the position, and the current object. Each loop, within the **next()** function, the position is used to get the current outer property value. This is used to access the internal property (array values) and add a string value, "Internal array value: " in front of each.

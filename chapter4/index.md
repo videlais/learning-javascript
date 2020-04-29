@@ -8,7 +8,7 @@
     - [Creating `new` Objects](#creating-new-objects)
     - [`class` and `extends`](#class-and-extends)
       - [`class`](#class)
-      - [*constructor()*](#constructor)
+      - [**constructor()**](#constructor)
     - [Class Scope](#class-scope)
       - [*super()*](#super)
 
@@ -18,13 +18,13 @@ In the previous chapter, objects were reviewed as having properties and methods.
 
 Prior to ES6, all objects in JavaScript used a concept called *prototypical inheritance*. Objects were part of something called the *prototype chain*.
 
-Every object, including the built-in objects, was given a property called *prototype* that defined what the "prototype" of each type of object had as properties and methods.
+Every object, including built-in objects, were given a property called *prototype* that defined what the "prototype" of each type of object had as properties and methods.
 
 As all objects were based these prototypes, it was possible to extend an object and give it more functionality.
 
 ### Prototype Chains
 
-The use of the *prototype* property creates a new property or method of *future* objects using the same pattern. In other words, if something new is created from that pattern, the prototype "chain" connects the new object with the changed pattern with the original pattern: there is a "chain" between them.
+The use of a *prototype* property creates a new property or method of *future* objects using the same pattern. In other words, if something new is created from that pattern, the prototype "chain" connects the new object with the changed pattern with the original pattern: there is a "chain" between them.
 
 ```javascript
 function functionExample() {}
@@ -46,7 +46,7 @@ let newObject = new functionExample();
 console.log(newObject.anotherExampleProperty);
 ```
 
-In JavaScript ES5, it was extremely common to create complex objects through adding more properties and methods to an object through writing a "blueprint" for it and then creating a `new` object based on the pattern, gaining everything on the *prototype* as they were part of the object itself.
+In JavaScript ES5, it was extremely common to create complex objects through adding more properties and methods to an object through writing a "blueprint" for it and then creating a `new` object based on the pattern, gaining everything on the *prototype* as everything part of the object itself.
 
 ### Complications with *prototype* and `this`
 
@@ -102,9 +102,9 @@ var test = new exampleFunction();
 console.log(test.internalMethod());
 ```
 
-In the above code, the object **test** can access the property *anotherValue* because it is part of the prototype it gained through creating a new copy of the existing pattern of *exampleFunction()* and the property added via *prototype*.
+In the above code, the object **test** can access the property *anotherValue* because it is part of the prototype it gained through creating a new copy of the existing pattern of **exampleFunction()** and the property added via *prototype*.
 
-However, if tested with *hasOwnProperty()*, the property *anotherValue* would return `false`.
+However, if tested with **hasOwnProperty()**, the property *anotherValue* would return `false`.
 
 ```javascript
 function exampleFunction() {
@@ -125,13 +125,15 @@ var test = new exampleFunction();
 console.log(test.hasOwnProperty("anotherValue"));
 ```
 
-The property *anotherValue* is *not* a property of *exampleFunction()*. It is a property of the *prototype* of *exampleFunction()*. This may seem a technicality, but it poses complications and challenges on trying to let one object be based on previous objects.
+The property *anotherValue* is *not* a property of **exampleFunction()**. It is a property of the *prototype* of **exampleFunction()**. This may seem like a technicality, but it poses complications and challenges on trying to let one object be based on previous objects.
+
+As accessing properties is often based on its they are "own properties" (internal to an object and *not* part of the prototype chain), managing complex projects often meant creating or maintaining a strict usage of internal properties or possible uses of the prototype chain.
 
 ## ES6 Classes
 
 ### Creating `new` Objects
 
-As was previously covered, the `new` keyword creates a new object based on an existing one. When used with functions, this created a enw object based on the function and any of its own internal properties and methods.
+As was previously covered, the `new` keyword creates a new object based on an existing one. When used with functions, this created a new object based on the function and any of its own internal properties and methods.
 
 However, as was pointed out in the discussion of `this` and *prototype*, adding new properties becomes complicated when comparing what is a "own property" or part of the prototype chain from some other source.
 
@@ -191,7 +193,7 @@ class Another extends Example {
 }
 ```
 
-#### *constructor()*
+#### **constructor()**
 
 Classes are created through the use of the `new` keyword. This creates an object based on the class. In this way, classes are often thought of as 'blueprints' for future object to be created.
 
@@ -206,9 +208,9 @@ class Example {
 let another = new Example();
 ```
 
-In object-oriented terms, this process *constructs* a new object based on the class. In fact, JavaScript, like many other object-oriented programming languages, supplies a special function named *constructor()* for that purpose.
+In object-oriented terms, this process *constructs* a new object based on the class. In fact, JavaScript, like many other object-oriented programming languages, supplies a special function named **constructor()** for that purpose.
 
-When the *constructor()* function is added inside a class, it is the first function called when an object is being "constructed." (If not supplied, JavaScript will automatically generate one.)
+When the **constructor()** function is added inside a class, it is the first function called when an object is being "constructed." (If not supplied, JavaScript will automatically generate one.)
 
 **index.js:**
 
@@ -229,7 +231,7 @@ class Example {
 let another = new Example();
 ```
 
-The *constructor()* also serves an additional purpose: it allows a class to accept values during the "construction" process. Because it is a function, the *constructor()* function can also accept values.
+The **constructor()** also serves an additional purpose: it allows a class to accept values during the "construction" process. Because it is a function, the **constructor()** function can also accept values.
 
 ```javascript
 // Define the class 'Example'
@@ -286,13 +288,13 @@ let another = new Example();
 another.addedMethod();
 ```
 
-Instead of being defined through the `this` keyword as part of the *constructor()*, however, methods are added to the class.
+Instead of being defined through the `this` keyword as part of the **constructor()**, however, methods are added to the class through writing them inside the class but outside of any other method body.
 
 #### *super()*
 
-The use of the keyword `extends` allows one class to "extend" another. However, what if there was a need to pass values from one *constructor()* to another? JavaScript provides the function *super()* to do that.
+The use of the keyword `extends` allows one class to "extend" another. However, what if there was a need to pass values from one **constructor()** to another? JavaScript provides the function **super()** to do that.
 
-In OOP terms, these classes exist a parent-child relationship. The first, original class is the 'parent' and the class that is extending it is the 'child'. Using the function *super()* calls the parent's *constructor()* and pass values to it.
+In OOP terms, these classes exist in a parent-child relationship. The first, original class is the 'parent' and the class that is extending it is the 'child'. Using the function **super()** calls the parent's **constructor()** and passes values to it.
 
 **index.js:**
 
@@ -354,4 +356,4 @@ class Another extends Example {
 let another = new Another();
 ```
 
-The one rule with using the keyword `super` in this way is that the parent's constructor must be called via *super()* before any other usages in the class. It has to be created before its methods can be called!
+The one rule with using the keyword `super` in this way is that the parent's constructor must be called via **super()** before any other usages in the class. After all, it has to exist before its methods can be called!

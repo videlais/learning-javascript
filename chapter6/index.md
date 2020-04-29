@@ -20,7 +20,7 @@ let exampleObject = {
 let someValue = exampleObject.someProperty;
 ```
 
-However, where this same operation occurs most frequently is not in the above use case, but a more common one in Node.js: *require()*-ing in an object exported by another file.
+However, where this same operation occurs most frequently is not in the above use case, but a more common one in Node.js: **require()**-ing in an object exported by another file.
 
 **Example.js:**
 
@@ -60,7 +60,7 @@ let { oneProperty } = require('./Example.js');
 let someValue = oneProperty;
 ```
 
-In the above example, only the property *oneProperty* was *require()*'d into the file. Everything else was ignored. What was previously the object **example** became an object through which the property *oneProperty* was destructed.
+In the above example, only the property *oneProperty* was **require()**'d into the file. Everything else was ignored. What was previously the object **example** became an object through which the property *oneProperty* was destructed.
 
 This functionality also works on arrays, too.
 
@@ -101,7 +101,7 @@ const thirdArray = [...oneArray, ...twoArray];
 console.log(thirdArray);
 ```
 
-This also works with single values. Instead of using *unshift()* or *push()*, the spread operator can be used to add values to the front or back of an array easily.
+This also works with single values. Instead of using **unshift()** or **push()**, the spread operator can be used to add values to the front or back of an array easily.
 
 ```javascript
 let oneArray = [1,2];
@@ -114,7 +114,7 @@ console.log( oneArray );
 
 ## Default Parameters
 
-In JavaScript ES5, it was often necessary to define the "default" values within functions and then test what was passed to it. (When not given a value, JavaScript defaults a parameter to the value of `undefined`.)
+In JavaScript ES5, it was often necessary to define the "default" values within functions and then test what was passed to it. (When not given a value, JavaScript defaults an parameter's value to `undefined`.)
 
 ```javascript
 function example(someValue) {
@@ -141,7 +141,7 @@ console.log(example("Not default"));
 
 ```
 
-With multiple parameters, this approach requires lots of extra lines of code!
+With multiple arguments, this approach requires lots of extra lines of code!
 
 To fix this common pattern, JavaScript ES6 added *default parameters*. These can be written inside of the parentheses of the function's definition.
 

@@ -12,10 +12,10 @@
       - [Function *name*](#function-name)
     - [`this`](#this)
     - [Function Methods](#function-methods)
-      - [Function *toString()*](#function-tostring)
-      - [Function *call()*](#function-call)
-      - [Function *apply()*](#function-apply)
-      - [Function *bind()*](#function-bind)
+      - [Function **toString()**](#function-tostring)
+      - [Function **call()**](#function-call)
+      - [Function **apply()**](#function-apply)
+      - [Function **bind()**](#function-bind)
   - [Arrow Functions](#arrow-functions)
   - [Arrow Function Expressions](#arrow-function-expressions)
 
@@ -48,11 +48,13 @@ function exampleFunction() {
 Including their name, like for the above *exampleFunction()*, functions have multiple parts in JavaScript.
 
 - *Name* (Optional): What the function is named.
-- *Arguments:* Values passed into the function
+- *Parameters:* Variables representing any values passed into the function
 - *Body:* What statements are inside the function
 - `return` statement (Optional): What, if anything, is output from the function.
 
-If functions are thought of as a series of statements toward a specific task, it can help to give them value to work on and then expect some form of output. Consider an example of a function called *addXandY()*.
+There is also another common term used with function, *arguments*. A function is said to "accept arguments" when values are passed to it. These *arguments* become the values of its *parameters* inside the function. Often, these terms will be seem to be the same thing, but the strict difference is that *parameters* are inside of a function. *Arguments* are any values passed to it when it is *called*.
+
+If functions are thought of as a series of statements toward a specific task, it can help to give them value to work on and then expect some form of output. Consider an example of a function called **addXandY()**.
 
 ```javascript
 function addXandY(x, y) {
@@ -62,8 +64,8 @@ function addXandY(x, y) {
 
 In the above example, its different parts would be broken down as the following:
 
-- Name: *addXandY()*
-- Arguments: *x* and *y*
+- Name: **addXandY()**
+- Parameters: *x* and *y*
 - Body: `return` x + y
 - `return`: x + y
 
@@ -89,7 +91,7 @@ In JavaScript, anonymous functions are common. Because they they can be written 
 
 When a function is *called* as part of another, it is called a *callback function*. While not a special type of function, it is a common pattern within JavaScript and much of built-in functions.
 
-For example, the function *forEach()* as part of Array objects accepts a *callback function*. This is a function that will be called for each entry in the array. It will also be passed two values, the entry and the current position.
+For example, the function **forEach()** as part of Array objects accepts a *callback function*. This is a function that will be called for each entry in the array. It will also be passed two values, the entry and the current position.
 
 ```javascript
 let arrayExample = [1,2,3];
@@ -101,7 +103,7 @@ arrayExample.forEach(
 );
 ```
 
-In the above code, an anonymous function is used within the built-in function of *forEach()*. This is its *callback function*. It will be called for each entry in the array and passed, in order, its values and the position of the entry each time.
+In the above code, an anonymous function is used within the built-in function of **forEach()**. This is its *callback function*. It will be called for each entry in the array and passed, in order, its values and the position of the entry each time.
 
 ## Functions as Objects
 
@@ -162,7 +164,7 @@ function exampleFunction() {
 console.log(exampleFunction());
 ```
 
-In the above code, the variable *internalValue* is a property of the function *exampleFunction()*. This means that it is accessed through the function. It is *internal* to the function.
+In the above code, the variable *internalValue* is a property of the function **exampleFunction()**. This means that it is accessed through the function. It is *internal* to the function.
 
 Inside the function, there is a need to decided between a variable that might appear outside of it and the ones that are internal to it. To help be more specific, the keyword `this` is used. It means "this object."
 
@@ -174,7 +176,7 @@ When discussing objects, the internal functions to that object are often called 
 
 All functions have access to the following methods:
 
-#### Function *toString()*
+#### Function **toString()**
 
 Returns the string source of the function.
 
@@ -190,7 +192,7 @@ function exampleFunction(x, y) {
 console.log(exampleFunction.toString());
 ```
 
-#### Function *call()*
+#### Function **call()**
 
 Calls the function and changes its `this` to the one supplied. Accepts any comma-separated values as additional arguments.
 
@@ -211,13 +213,13 @@ function secondExampleFunction() {
 secondExampleFunction();
 ```
 
-In the above example, the function *exampleFunction()* is called from inside the function *secondExampleFunction()*. It passes its own `this` to *exampleFunction()*. New properties are added, and the function returns. Inside *secondExampleFunction()*, these properties are then output.
+In the above example, the function **exampleFunction()** is called from inside the function **secondExampleFunction()**. It passes its own `this` to **exampleFunction()**. New properties are added, and the function returns. Inside **secondExampleFunction()**, these properties are then output.
 
-#### Function *apply()*
+#### Function **apply()**
 
 Calls the function and changes its `this` to the one supplied. Accepts all additional arguments as an array value.
 
-**Note** *apply()* and *call()* are very similar. *apply()*, however, accepts an optional array whereas *call()* accepts a list.
+**Note** **apply()** and **call()** are very similar. **apply()**, however, accepts an optional array whereas **call()** accepts a list.
 
 ```javascript
 function exampleFunction(argument1, argument2, argument3) {
@@ -236,7 +238,7 @@ function secondExampleFunction() {
 secondExampleFunction();
 ```
 
-#### Function *bind()*
+#### Function **bind()**
 
 Creates a new function with a changed `this` to the one supplied. Accepts any comma-separated values as additional arguments.
 
@@ -261,7 +263,7 @@ function secondExampleFunction() {
 secondExampleFunction();
 ```
 
-In the above example, the use of *bind()* creates a new function, *functionValue()*, that is then called. As its `this` is the sme as *secondExampleFunction()*, this adds the properties found in *exampleFunction()* and returns. This allows the properties to be output in the lines that follow *functionValue()*.
+In the above example, the use of **bind()** creates a new function, **functionValue()**, that is then called. As its `this` is the sme as **secondExampleFunction()**, this adds the properties found in **exampleFunction()** and returns. This allows the properties to be output in the lines that follow **functionValue()**.
 
 ## Arrow Functions
 
@@ -298,7 +300,7 @@ function returnLastEntry(arrayExample) {
 }
 ```
 
-In the above code, the use of the arrow function allows the code inside it to access the `this` of the function it is defined within, *returnLastEntry()*. While a silly example, it shows how an arrow function can access the `this` where it is defined.
+In the above code, the use of the arrow function allows the code inside it to access the `this` of the function it is defined within, **returnLastEntry()**. While a silly example, it shows how an arrow function can access the `this` where it is defined.
 
 ## Arrow Function Expressions
 

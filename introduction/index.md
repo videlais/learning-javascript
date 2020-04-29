@@ -1,12 +1,12 @@
 # Introduction
 
 - [Introduction](#introduction)
-  - [Conventions](#conventions)
+  - [Style Conventions](#style-conventions)
   - [Introducing ES6](#introducing-es6)
   - [Differences between ES5 and ES6](#differences-between-es5-and-es6)
   - [Node.js Preferred](#nodejs-preferred)
 
-## Conventions
+## Style Conventions
 
 This book uses some style conventions. Properties are give *emphasis*. Objects are given **strong emphasis**. While code may sometimes appear inline `like this`, most will be given in code blocks like the following:
 
@@ -16,7 +16,9 @@ console.log("Hi!");
 
 Any use of HTML will also within code blocks and may appear like the following: `<html>`.
 
-As special character such the semicolon, `;`, are discussed as part of writing code, they will also appear in a block style.
+As special character such the semicolon, `;`, that are discussed as part of writing code will also appear in a block style.
+
+Special keywords are also escaped in the same way. For example, the keyword `let` would appear as an in-line code block.
 
 ## Introducing ES6
 

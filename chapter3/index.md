@@ -9,47 +9,47 @@
       - [Ordered Entries](#ordered-entries)
       - [Using Loops to Access Entries](#using-loops-to-access-entries)
       - [Array Methods](#array-methods)
-        - [Array *copyWithin()*](#array-copywithin)
-        - [Array *fill(value, begin, end)*](#array-fillvalue-begin-end)
-        - [Array *pop()*](#array-pop)
-        - [Array *push(value, value...)*](#array-pushvalue-value)
-        - [Array *reverse()*](#array-reverse)
-        - [Array *shift()*](#array-shift)
-        - [Array *sort()*](#array-sort)
-        - [Array *splice(start[, deleteCount[, item1[, item2[, ...]]]])*](#array-splicestart-deletecount-item1-item2)
-        - [Array *unshift()*](#array-unshift)
+        - [Array **copyWithin()**](#array-copywithin)
+        - [Array **fill(value, begin, end)**](#array-fillvalue-begin-end)
+        - [Array **pop()**](#array-pop)
+        - [Array **push(value, value...)**](#array-pushvalue-value)
+        - [Array **reverse()**](#array-reverse)
+        - [Array **shift()**](#array-shift)
+        - [Array **sort()**](#array-sort)
+        - [Array **splice(start[, deleteCount[, item1[, item2[, ...]]]])**](#array-splicestart-deletecount-item1-item2)
+        - [Array **unshift()**](#array-unshift)
     - [Strings](#strings)
       - [String Properties](#string-properties)
         - [String *length*](#string-length)
       - [String Methods](#string-methods)
-        - [String *charAt(index)*](#string-charatindex)
-        - [String *concat()*](#string-concat)
-        - [String *includes(value)*](#string-includesvalue)
-        - [String *endsWith(value)*](#string-endswithvalue)
-        - [String *indexOf(value)*](#string-indexofvalue)
-        - [String *lastIndexOf(value)*](#string-lastindexofvalue)
-        - [String *match()*](#string-match)
-        - [String *matchAll()*](#string-matchall)
-        - [String *padEnd(length, value)*](#string-padendlength-value)
-        - [String *padStart(length, value)*](#string-padstartlength-value)
-        - [String *repeat(number)*](#string-repeatnumber)
-        - [String *replace(search, replace)*](#string-replacesearch-replace)
-        - [String *search(regExp)*](#string-searchregexp)
-        - [String *slice(position, end)*](#string-sliceposition-end)
-        - [String *split(value)*](#string-splitvalue)
-        - [String *startsWith(value)*](#string-startswithvalue)
-        - [String *substring(position, end)*](#string-substringposition-end)
-        - [String *toLowerCase()*](#string-tolowercase)
-        - [String *toUpperCase()*](#string-touppercase)
-        - [String *trim()*](#string-trim)
-        - [String *trimStart()* / *trimLeft()*](#string-trimstart--trimleft)
-        - [String *trimEnd()* / *trimRight()*](#string-trimend--trimright)
+        - [String **charAt(index)**](#string-charatindex)
+        - [String **concat()**](#string-concat)
+        - [String **includes(value)**](#string-includesvalue)
+        - [String **endsWith(value)**](#string-endswithvalue)
+        - [String **indexOf(value)**](#string-indexofvalue)
+        - [String **lastIndexOf(value)**](#string-lastindexofvalue)
+        - [String **match()**](#string-match)
+        - [String **matchAll()**](#string-matchall)
+        - [String **padEnd(length, value)**](#string-padendlength-value)
+        - [String **padStart(length, value)**](#string-padstartlength-value)
+        - [String **repeat(number)**](#string-repeatnumber)
+        - [String **replace(search, replace)**](#string-replacesearch-replace)
+        - [String **search(regExp)**](#string-searchregexp)
+        - [String **slice(position, end)**](#string-sliceposition-end)
+        - [String **split(value)**](#string-splitvalue)
+        - [String **startsWith(value)**](#string-startswithvalue)
+        - [String **substring(position, end)**](#string-substringposition-end)
+        - [String **toLowerCase()**](#string-tolowercase)
+        - [String **toUpperCase()**](#string-touppercase)
+        - [String **trim()**](#string-trim)
+        - [String **trimStart()** / **trimLeft()**](#string-trimstart--trimleft)
+        - [String **trimEnd()** / **trimRight()**](#string-trimend--trimright)
       - [Concatenation](#concatenation)
       - [Template Literals](#template-literals)
     - [Object Literals](#object-literals)
       - [Object Methods](#object-methods)
-        - [Object *hasOwnProperty(value)*](#object-hasownpropertyvalue)
-        - [Object *toString()*](#object-tostring)
+        - [Object **hasOwnProperty(value)**](#object-hasownpropertyvalue)
+        - [Object **toString()**](#object-tostring)
 
 ## Introducing Objects
 
@@ -133,39 +133,39 @@ while (position < arrayExample.length) {
 
 #### Array Methods
 
-##### Array *copyWithin()*
+##### Array **copyWithin()**
 
 Copies part of an array into another part of the array.
 
-##### Array *fill(value, begin, end)*
+##### Array **fill(value, begin, end)**
 
 Fills an array with *value* from position *begin* to *end*. If *begin* and *end* are not included, fills array from beginning to end.
 
-##### Array *pop()*
+##### Array **pop()**
 
 Removes the last element in the array and returns it.
 
-##### Array *push(value, value...)*
+##### Array **push(value, value...)**
 
 Adds one or more values to an array and returns the new length.
 
-##### Array *reverse()*
+##### Array **reverse()**
 
 Reverses the positions of values in an array.
 
-##### Array *shift()*
+##### Array **shift()**
 
 Removes the first element and returns it.
 
-##### Array *sort()*
+##### Array **sort()**
 
 Sorts the elements of the array in place based on converting their values into strings and placing the values in ascending order.
 
-##### Array *splice(start[, deleteCount[, item1[, item2[, ...]]]])*
+##### Array **splice(start[, deleteCount[, item1[, item2[, ...]]]])**
 
 Removes, replaces, or adds elements to an array in place.
 
-##### Array *unshift()*
+##### Array **unshift()**
 
 Add one or more elements to the front of an array and returns the new length.
 
@@ -198,95 +198,95 @@ console.log(stringExample.length);
 
 As strings are potentially complex or a long series of characters, there are many methods available within JavaScript for working with string values.
 
-##### String *charAt(index)*
+##### String **charAt(index)**
 
-The function *charAt()* returns the character at the specific *index* f *index* is less than the total *length*.
+Returns the character at the specific *index* f *index* is less than the total *length*.
 
 If *index* is greater than the *length* of the string, it returns an empty string.
 
 Otherwise, it returns the first position (0) within the string.
 
-##### String *concat()*
+##### String **concat()**
 
 Returns a new string value made up of all of the arguments passed combined together.
 
-##### String *includes(value)*
+##### String **includes(value)**
 
 Searches a string for a value, *value*. If found, the function returns `true`. Otherwise, it returns `false`.
 
-##### String *endsWith(value)*
+##### String **endsWith(value)**
 
 Returns `true` if a string ends with *value*. Otherwise, returns `false`.
 
-##### String *indexOf(value)*
+##### String **indexOf(value)**
 
 Returns the first position of *value* within the string or -1 if it cannot be found.
 
-##### String *lastIndexOf(value)*
+##### String **lastIndexOf(value)**
 
 Returns the first position of the *last* occurrence of *value* within a string or -1 if *value* is not found in the string.
 
-##### String *match()*
+##### String **match()**
 
 Searches a string using a Regular Expression, returning the result.
 
-##### String *matchAll()*
+##### String **matchAll()**
 
 Returns all capture groups based on a Regular Expression value.
 
-##### String *padEnd(length, value)*
+##### String **padEnd(length, value)**
 
 Returns a new string of length *length* with *value* added to the end of the current string to create a string of *length*.
 
-##### String *padStart(length, value)*
+##### String **padStart(length, value)**
 
 Returns a new string of length *length* with *value* added to the beginning of the current string to create a string of *length*.
 
-##### String *repeat(number)*
+##### String **repeat(number)**
 
 Returns a new string created through repeating the current characters *number* of times.
 
-##### String *replace(search, replace)*
+##### String **replace(search, replace)**
 
 Searches for *search* within a string. If found, replaces it with *replace*. Returns a new string.
 
-##### String *search(regExp)*
+##### String **search(regExp)**
 
 Searches a string based on a Regular Expression.
 
-##### String *slice(position, end)*
+##### String **slice(position, end)**
 
 Returns a new string from the existing string starting with *position* and ending either at the end of the string or at the position *end*.
 
-##### String *split(value)*
+##### String **split(value)**
 
 Creates an array through dividing up a string based on *value*.
 
-##### String *startsWith(value)*
+##### String **startsWith(value)**
 
 Returns `true` if string begins with *value*. Otherwise, it returns `false`.
 
-##### String *substring(position, end)*
+##### String **substring(position, end)**
 
 Returns a new string starting at *position* and ending in *end*. If *end* is greater than the *length*, it returns up to the end.
 
-##### String *toLowerCase()*
+##### String **toLowerCase()**
 
 Returns the current string with all letters in lower case.
 
-##### String *toUpperCase()*
+##### String **toUpperCase()**
 
 Returns the current string with all letters in upper case.
 
-##### String *trim()*
+##### String **trim()**
 
 Returns a new string with whitespace (space, tab, no-break space) removes from the beginning and end.
 
-##### String *trimStart()* / *trimLeft()*
+##### String **trimStart()** / **trimLeft()**
 
 Removed whitespace space, tab, no-break space) from the beginning of the string.
 
-##### String *trimEnd()* / *trimRight()*
+##### String **trimEnd()** / **trimRight()**
 
 Removed whitespace space, tab, no-break space) from the end of the string.
 
@@ -342,7 +342,7 @@ Any objects created in this way, as with all other objects, have some built-in m
 
 #### Object Methods
 
-##### Object *hasOwnProperty(value)*
+##### Object **hasOwnProperty(value)**
 
 Returns if *value* exists as a property within the object.
 
@@ -355,7 +355,7 @@ let objectExample = {
 console.log(objectExample.hasOwnProperty("someProperty"));
 ```
 
-##### Object *toString()*
+##### Object **toString()**
 
 Returns a string representing the object.
 
