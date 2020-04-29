@@ -1,8 +1,29 @@
-### Symbol
+# Symbol
 
-The keyword `Symbol` was added in JavaScript ES6. It has two common use cases for augmenting other objects.
+- [Symbol](#symbol)
+  - [Reviewing Symbols](#reviewing-symbols)
+  - [Adding Unique Identifiers](#adding-unique-identifiers)
+  - [Customizing Well-Known Functionality](#customizing-well-known-functionality)
+  - [`Symbol` Shorthand](#symbol-shorthand)
+    - [Computed Object Literal Properties](#computed-object-literal-properties)
+    - [Computed Instance Fields](#computed-instance-fields)
+    - [Hidden Properties](#hidden-properties)
 
-#### Adding Unique Identifiers
+## Reviewing Symbols
+
+In programming terminology, a *symbol* is a data type with a unique value or form per instance.
+
+In JavaScript ES6, symbols are created and used with the keyword `Symbol`.
+
+Every use of the global constructor `Symbol()` *always* creates a unique value where the following is always true:
+
+```javascript
+Symbol() !== Symbol()
+```
+
+Because of this special usage, it has two common use cases for augmenting other objects.
+
+## Adding Unique Identifiers
 
 The primary use case of the keyword `Symbol` is to add *unique* identifiers to other, existing objects.
 
@@ -53,11 +74,9 @@ e[exampleSymbol] = 1;
 console.log(e[exampleSymbol]);
 ```
 
-**Note:** Any use of the `Symbol()` function will create a unique identifer. For example, `Symbol() === Symbol()` will be `false` every time.
+## Customizing Well-Known Functionality
 
-#### Customizing Well-Known Functionality
-
-Beyond augmenting object properties, the keyword `Symbol` can also be used with other functionality. Existing objects can be augmented to support `match`, `search`, and `replace`.
+Beyond augmenting object properties, the keyword `Symbol` can also be used with other functionality. Existing objects can be augmented to support `match`, `search`, and `replace`, for example.
 
 ```javascript
 // Define a class
@@ -73,9 +92,10 @@ class Example {
   // This will return the indexOf() of
   //  the internal this.value.
   //
-  // (This MUST be be "called" via search() on
-  //  a string through passing a new object to it
-  //  with the Symbol.search used within it!)
+  // (This MUST be be "called" via search()
+  //  on a string through passing a
+  //  new object to it with
+  //  the Symbol.search used within it!)
   [Symbol.search](string) {
     return string.indexOf(this.value);
   }
@@ -89,13 +109,13 @@ console.log('some text'.search(new Example('tex')));
 
 **Note:** The use of `Symbol.search`, `Symbol.match`, or `Symbol.replace` must be used with the corresponding **String.prototype** functions of *search()*, *match()*, and *replace()*.
 
-#### Symbol Shorthand
+## `Symbol` Shorthand
 
-While the `Symbol` keyword can be used within objects, there is also a shorthand that uses square brackets.
+While the `Symbol` keyword can be used within objects, there is also a shorthand that uses square brackets with field instances.
 
-#### Computed Object Literal Properties
+### Computed Object Literal Properties
 
-It works with object literals using the pattern of `[symbolReference]: value` inside its definition to create a computed property.
+Object literals can be augmented using the pattern of `[symbolReference]: value` inside its definition to create a computed property name and value.
 
 ```javascript
 // Create an example symbol
@@ -108,8 +128,11 @@ const exampleSymbol = Symbol();
 
 // Create an object
 const person = {
-  // Use the saved value from the created symbol.
-  // Use the shorthand of [symbolReference]: value
+  // Use the saved value
+  //  from the created symbol.
+  //
+  // Use the shorthand
+  //  of [symbolReference]: value
   [exampleSymbol]: 'Example value'
 }
 
@@ -119,7 +142,7 @@ const person = {
 console.log (person[exampleSymbol]);
 ```
 
-#### Computed Instance Fields
+### Computed Instance Fields
 
 The square brackets shorthand also works with classes as well. It uses the pattern of `[symbolReference] = value`.
 
@@ -134,16 +157,19 @@ const exampleSymbol = Symbol();
 
 // Create an object
 class Person {
-  // Use the saved value from the created symbol.
+  // Use the saved value
+  //  from the created symbol.
   //
-  // Use the shorthand of [symbolReference] = value
+  // Use the shorthand
+  //  of [symbolReference] = value
   [exampleSymbol] = 'Example value';
 }
 
 // Create a new object
 //
-// Add a computed instance field based on
-//  the reference value of the created symbol.
+// Add a computed instance
+//  field based on the
+//  reference value of the created symbol.
 const p = new Person();
 
 // Access the created property's value
@@ -152,7 +178,7 @@ const p = new Person();
 console.log (p[exampleSymbol]);
 ```
 
-#### Hidden Properties
+### Hidden Properties
 
 Any use of `Symbol` with an object creates a "hidden" property. This means they do not appear when *Object.keys()* or *Object.getOwnPropertyNames()* is used with the object. They augment the object, but are not a true property of it.
 

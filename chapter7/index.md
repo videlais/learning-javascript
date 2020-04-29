@@ -86,6 +86,14 @@
       - [*console.trace()*](#consoletrace)
       - [*console.warn()*](#consolewarn)
     - [JSON Static Methods](#json-static-methods)
+      - [*JSON.parse(text)*](#jsonparsetext)
+      - [*JSON.stringify(value[, replacer[, space]])*](#jsonstringifyvalue-replacer-space)
+    - [Static Global Functions](#static-global-functions)
+      - [*eval(string)*](#evalstring)
+      - [*isFinite(x)*](#isfinitex)
+      - [*isNaN(x)*](#isnanx)
+      - [*parseFloat(x)*](#parsefloatx)
+      - [*parseInt(x, radix)*](#parseintx-radix)
 
 ## Public Instance Fields
 
@@ -527,4 +535,40 @@ Outputs a warning message. You may use string substitution and additional argume
 
 ### JSON Static Methods
 
-TODO
+#### *JSON.parse(text)*
+
+Parse the string text as JSON and transform the value into an object literal. If an error occurs during the transformation, a `SyntaxError` will be thrown.
+
+#### *JSON.stringify(value[, replacer[, space]])*
+
+Returns a JSON string equal to the specified **value**, translating all properties into string values. The second, optional argument *replacer* allows for changing default translation behaviors like using `undefined` for `null` values.
+
+The third, optional argument *space* defines the whitespace between properties. (Using, for example, the tab, `\t`, printing symbol would place space between each and "pretty print" the values.)
+
+### Static Global Functions
+
+JavaScript also defines global functions that can be used from any scope for processing data.
+
+#### *eval(string)*
+
+Evaluates JavaScript code represented as *string*.
+
+**Note:** Using *eval()* is often a security risk and should very rarely be used. Any code run with *eval()* executes in the global scope.
+
+#### *isFinite(x)*
+
+Returns if *value* is a finite number.
+
+#### *isNaN(x)*
+
+Returns if *x* is NaN (not-a-number) or not.
+
+**Note:** In most cases, the preferred function is *Number.isNaN()* because of how *isNaN()* will attempt to convert values into numbers for testing.
+
+#### *parseFloat(x)*
+
+Parses *x* (possibly converting it into a string first) and returns a floating point (decimal) number.
+
+#### *parseInt(x, radix)*
+
+Parses a string, *x*, and returns an integer of the specified radix (the base in mathematical numeral systems).

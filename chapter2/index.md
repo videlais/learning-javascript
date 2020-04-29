@@ -8,14 +8,14 @@
   - [Callback Functions](#callback-functions)
   - [Functions as Objects](#functions-as-objects)
     - [Function Properties](#function-properties)
-      - [*length*](#length)
-      - [*name*](#name)
+      - [Function *length*](#function-length)
+      - [Function *name*](#function-name)
     - [`this`](#this)
     - [Function Methods](#function-methods)
-      - [*toString()*](#tostring)
-      - [*call()*](#call)
-      - [*apply()*](#apply)
-      - [*bind()*](#bind)
+      - [Function *toString()*](#function-tostring)
+      - [Function *call()*](#function-call)
+      - [Function *apply()*](#function-apply)
+      - [Function *bind()*](#function-bind)
   - [Arrow Functions](#arrow-functions)
   - [Arrow Function Expressions](#arrow-function-expressions)
 
@@ -107,18 +107,15 @@ In the above code, an anonymous function is used within the built-in function of
 
 Functions are special in JavaScript. While often designed to carry out a specific task, they are also *objects*.
 
-When a function is defined, it is also given some built-in *properties* and *functions* as part of being an object in JavaScript.
+When a function is defined, it is also given some built-in *properties* and *methods* as part of being an object in JavaScript.
 
 **Note:** Objects are covered more in-depth in Chapter 3.
 
 ### Function Properties
 
-Every function has access to two properties:
+Every function has access to two properties: *length* and *name*.
 
-- *length*: Number of arguments passed to the function.
-- *name*: Name of the function, if it has one.
-
-#### *length*
+#### Function *length*
 
 The property *length* of a function has the value of the number of arguments passed to the function.
 
@@ -129,7 +126,7 @@ function exampleFunction(argument1, argument2 ,argument3) {};
 console.log(exampleFunction.length);
 ```
 
-#### *name*
+#### Function *name*
 
 The property *name* of a function has the value of the name of the function or the name of a variable with its value if it does not have a name itself.
 
@@ -151,7 +148,9 @@ If an anonymous function is used, it uses the name of the variable holding its v
 
 ### `this`
 
-All functions have access to a special keyword in JavaScript: `this`. The keyword is possible through a strange fact about functions in JavaScript: they are also objects!
+All functions have access to a special keyword in JavaScript: `this`.
+
+The keyword is possible through a useful fact to remember about functions in JavaScript: they are also objects!
 
 ```javascript
 function exampleFunction() {
@@ -175,7 +174,7 @@ When discussing objects, the internal functions to that object are often called 
 
 All functions have access to the following methods:
 
-#### *toString()*
+#### Function *toString()*
 
 Returns the string source of the function.
 
@@ -191,7 +190,7 @@ function exampleFunction(x, y) {
 console.log(exampleFunction.toString());
 ```
 
-#### *call()*
+#### Function *call()*
 
 Calls the function and changes its `this` to the one supplied. Accepts any comma-separated values as additional arguments.
 
@@ -214,7 +213,7 @@ secondExampleFunction();
 
 In the above example, the function *exampleFunction()* is called from inside the function *secondExampleFunction()*. It passes its own `this` to *exampleFunction()*. New properties are added, and the function returns. Inside *secondExampleFunction()*, these properties are then output.
 
-#### *apply()*
+#### Function *apply()*
 
 Calls the function and changes its `this` to the one supplied. Accepts all additional arguments as an array value.
 
@@ -237,7 +236,7 @@ function secondExampleFunction() {
 secondExampleFunction();
 ```
 
-#### *bind()*
+#### Function *bind()*
 
 Creates a new function with a changed `this` to the one supplied. Accepts any comma-separated values as additional arguments.
 

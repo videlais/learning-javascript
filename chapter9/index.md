@@ -1,9 +1,55 @@
-
 # Iterators
 
-In JavaScript ES5, moving through the entries in an array or properties of an object can potentially be complicated and require multiple lines of code. JavaScript ES6 improved this common pattern through two additional keywords used with the traditional `for()` loop: `of` and `in`. These keywords access new functionality added in JavaScript ES6: *iterators*.
+- [Iterators](#iterators)
+  - [Reviewing Iteration](#reviewing-iteration)
+  - [ES6 Improvements](#es6-improvements)
+    - [`for... of`](#for-of)
+    - [`for... in`](#for-in)
+    - [Defining Custom Iterators](#defining-custom-iterators)
 
-#### `for... of`
+## Reviewing Iteration
+
+In JavaScript ES5, moving through the entries in an array or properties of an object can potentially be complicated and require multiple lines of code.
+
+**Accessing Array Properties:**
+
+```javascript
+const arrayExample = [1,2,3];
+
+for(let i = 0; i < arrayExample.length; i++) {
+  // Access indices of arrayExample using i
+}
+```
+
+**Accessing Object Properties:**
+
+```javascript
+const objectExample = {
+  property1: 1,
+  property2: 2,
+  property3: 3
+};
+
+// Object.entries() returns an array
+//  of arrays in the pattern of
+//  [property, value].
+const arrayFromObject = Object.entries(objectExample);
+
+let i = 0;
+
+while(i < arrayFromObject.length) {
+  // Properties are position 0
+  // Values are position 1
+  console.log(arrayFromObject[i][0], arrayFromObject[i][1]);
+  i++;
+}
+```
+
+## ES6 Improvements
+
+JavaScript ES6 improved this common pattern through two additional keywords used with the traditional `for()` loop: `of` and `in`. These keywords access new functionality added in JavaScript ES6: *iterators*.
+
+### `for... of`
 
 In JavaScript ES5, moving through an array uses the `for()` keyword and often the creation of an additional variable like *i*, *j*, or *k* where the position of each entry in the array could be accessed through increasing the value of the variable to move forward or decreasing to move backward through the array.
 
@@ -25,7 +71,7 @@ for(let entry of arrayExample) {
 }
 ```
 
-#### `for... in`
+### `for... in`
 
 When working with objects, there is no access to positions. They do not have them. To help iterate over their properties, the keyword `in` can be combined with `for()`.
 
@@ -40,7 +86,7 @@ for(let entry in objectExample) {
 }
 ```
 
-However, instead of returning values, like with arrays, the `for... in` pattern returns the *names of the properties themselves*. To access the *values* of the properties, the square bracket syntax can be used.
+However, instead of returning values, like with arrays, the `for... in` pattern returns the *names of the properties themselves*. To access the *values* of the properties, the square bracket syntax can be used to access the computed own properties of the object.
 
 ```javascript
 let objectExample = {
@@ -53,7 +99,7 @@ for(let entry in objectExample) {
 }
 ```
 
-#### Defining Iterators
+### Defining Custom Iterators
 
 The `Symbol` keyword can be used to define an iterator for any object.
 
@@ -66,7 +112,7 @@ let objectExample = {
 };
 ```
 
-The use of the `for...of` pattern would be able to process each property of the **objectExample** object. The following, however, would not be.
+The use of the `for...of` pattern would be able to process each property of the **objectExample** object. The following, however, could not be easily handled without custom code.
 
 ```javascript
 // Create an object literal
@@ -84,7 +130,7 @@ const objectExample = {
 
 In the above code, the object has properties which are, themselves, arrays. The `for... of` iterator would not be able to process the complex data structure. It is not *iteratable*.
 
-Like other uses of `Symbol` an object can be augmented with additional properties. One of the properties that can be added is *iterator*.
+Like other uses of `Symbol`, an object can be augmented with additional properties. One of the properties that can be added is *iterator*.
 
 Defined iterators follow the pattern of `[Symbol.iterator] = function()` where the function must return an object literal with a property named `next()` that must, itself, return an object literal with at least two properties: *done* and *value*.
 

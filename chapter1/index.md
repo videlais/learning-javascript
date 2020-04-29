@@ -14,7 +14,6 @@
       - [String](#string)
     - [Data Collections](#data-collections)
       - [`Object`](#object)
-      - [`Array`](#array)
   - [Mathematics with Variables](#mathematics-with-variables)
     - [Order of Operations](#order-of-operations)
 
@@ -26,7 +25,7 @@ In programming, we use special keywords to mark something as a variable. We writ
 
 Variable *names* also have a special rule. They can contain letters, numbers, and the underscore, but no other special characters -- not even spaces! Because of this rule, variables are often written in what is called camel case, often written as camelCase. Without spacing between words, the first letter of the second word, and all other words, are capitalized to help better explain its usage.
 
-**Let's look at an example:**
+**Example:**
 
 ```javascript
 let anExampleValue = 5;
@@ -133,6 +132,7 @@ Any number of any form, be it a whole number, 5, or a decimal, 3.14, is a Number
 
 ```javascript
 let numberExample = 5;
+let secondNumberExample = 5.75;
 ```
 
 #### String
@@ -141,6 +141,7 @@ Programming is written using words. This makes storing words and phrases potenti
 
 ```javascript
 let stringExample = "Hello, world!";
+let secondStringExample = 'Hi!';
 ```
 
 ### Data Collections
@@ -149,17 +150,9 @@ Beyond *primitives*, JavaScript also supports other *types* of data that are col
 
 #### `Object`
 
-In JavaScript, an *object* is a collection of *properties*. These can be any of the *other* data types, including itself!
+In JavaScript, an *object* is a collection of *properties* and *methods*. These can be any of the *other* data types, including itself!
 
-Objects "collect" the other data types inside itself. All properties are "wrapped" through curly brackets, which define the values within as part of itself.
-
-#### `Array`
-
-An *Array* is a special type of object where order is important. Its values are defined using square brackets with commas between them.
-
-```javascript
-let arrayExample = [1, 3, "Hello!"];
-```
+Objects "collect" the other data types inside itself. All properties and methods are "wrapped" through curly brackets, which define the values within as part of itself.
 
 ## Mathematics with Variables
 
