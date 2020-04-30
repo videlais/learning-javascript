@@ -33,17 +33,9 @@
 
 ## **Set()**
 
-Along with other object data types like Function and Array, JavaScript ES6 adds another: **Set**.
-
 A **Set** is similar to an **Array**, but has one specific rule: each value *must* be unique.
 
 Sets are created through the global constructor **Set()**. Unlike Arrays, values cannot be passed into a Set using square brackets. They must be added through the function **add()**.
-
-```javascript
-let setExample = Set();
-setExample.add(1);
-setExample.add("Hello!");
-```
 
 `Set` also provides the following properties and methods:
 
@@ -62,6 +54,12 @@ Returns if the *value* is in the set or not.
 #### Set **add(value)**
 
 Adds a value to the set.
+
+```javascript
+let setExample = Set();
+setExample.add(1);
+setExample.add("Hello!");
+```
 
 #### Set **delete(value)**
 

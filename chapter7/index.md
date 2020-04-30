@@ -66,7 +66,7 @@
       - [**Number.parseFloat(string)**](#numberparsefloatstring)
       - [**Number.parseInt(string, [radix])**](#numberparseintstring-radix)
     - [Console Static Methods](#console-static-methods)
-      - [**console.assert()**](#consoleassert)
+      - [**console.assert(argument)**](#consoleassertargument)
       - [**console.clear()**](#consoleclear)
       - [**console.count()**](#consolecount)
       - [**console.countReset()**](#consolecountreset)
@@ -94,6 +94,9 @@
       - [**isNaN(x)**](#isnanx)
       - [**parseFloat(x)**](#parsefloatx)
       - [**parseInt(x, radix)**](#parseintx-radix)
+      - [**setInterval(callback, time)**](#setintervalcallback-time)
+      - [**setTimeout(callback, time)**](#settimeoutcallback-time)
+    - [**clearInterval(label)**](#clearintervallabel)
 
 ## Public Instance Fields
 
@@ -227,67 +230,264 @@ Many of the built-in global objects in JavaScript have their own static methods.
 
 Copies all of the own properties from **objectA** to **objectB**.
 
+```javascript
+const objectA = {
+  property1: 1
+}
+
+const objectB = {
+  property2: 2
+}
+
+let objectC = {};
+
+Object.assign(objectC, objectA);
+
+Object.assign(objectC, objectB);
+
+// Outputs 1 2
+console.log( objectC.property1, objectC.property2);
+```
+
 #### **Object.create(objectA)**
 
 Create a new object using **objectA** as its prototype.
+
+```javascript
+const objectA = {
+  property1: 1
+}
+
+let objectC = Object.create(objectA);
+
+// Outputs 1
+console.log( objectC.property1 );
+```
 
 #### **Object.defineProperty(object, property)**
 
 Defines a new *property* on **object**. This is passed as an object literal, setting its accessor descriptors.
 
+```javascript
+const objectA = {
+}
+
+Object.defineProperty(
+  objectA,
+  "property1",
+  {
+    value: 42
+  }
+);
+
+// Outputs 42
+console.log( objectA.property1 );
+```
+
 #### **Object.defineProperties(object, properties)**
 
 Defines multiple properties found within the object literal *properties* on the object **object**.
+
+```javascript
+const objectA = {
+}
+
+Object.defineProperties(objectA,
+{
+  "property1":
+  {
+    value: 2
+  },
+  "property2":
+  {
+    value: 4
+  }
+ }
+);
+
+// Outputs 2
+console.log( objectA.property1 );
+```
 
 #### **Object.entries(objectA)**
 
 Returns an array of `[key, value]` pairs for all properties of an object. (Does not access the prototype chain.)
 
+```javascript
+const objectA = {
+  property1: 1,
+  property2: 2
+}
+
+// Outputs
+// [ [ 'property1', 1 ], [ 'property2', 2 ] ]
+console.log( Object.entries(objectA) );
+```
+
 #### **Object.freeze(objectA)**
 
 Prevents any changes to the object, its properties and methods, and includes to its prototype chain.
+
+```javascript
+let objectA = {
+  property1: 1,
+  property2: 2
+}
+
+Object.freeze(objectA);
+
+objectA.property1 = 3;
+
+// Outputs 1
+console.log( objectA.property1 );
+```
+
+**Note:** **freeze()** differs from **seal()**. If an object is sealed, new properties cannot be added. If it is frozen, values cannot be changed.
 
 #### **Object.getOwnPropertyDescriptor(objectA, propertyB)**
 
 Returns the descriptor of *propertyB* within **objectA**.
 
+```javascript
+const objectA = {
+  property1: 1,
+  property2: 2
+}
+
+// Outputs
+// { value: 1, writable: true, enumerable: true, configurable: true }
+console.log ( Object.getOwnPropertyDescriptor(objectA, "property1") );
+```
+
 #### **Object.getOwnPropertyDescriptors(objectA)**
 
 Returns an object containing all descriptors of the properties of the *objectA*.
+
+```javascript
+const objectA = {
+  property1: 1,
+  property2: 2
+}
+
+// Outputs
+// {
+//  property1: { value: 1, writable: true, enumerable: true, configurable: true },
+//  property2: { value: 2, writable: true, enumerable: true, configurable: true }
+// }
+console.log ( Object.getOwnPropertyDescriptors(objectA) );
+```
 
 #### **Object.getOwnPropertyNames(objectA)**
 
 Returns an array of all own properties of *objectA*.
 
+```javascript
+const objectA = {
+  property1: 1,
+  property2: 2
+}
+
+// Outputs [ 'property1', 'property2' ]
+console.log( Object.getOwnPropertyNames(objectA) );
+```
+
 #### **Object.getOwnPropertySymbols(objectA)**
 
 Returns an array of **Symbol** properties of *objectA*.
+
+```javascript
+const objectA = {
+  property1: 1,
+  property2: 2,
+  [Symbol("property3")]: 3
+}
+
+// Output [ Symbol(property3) ]
+console.log ( Object.getOwnPropertySymbols(objectA) );
+```
 
 #### **Object.is(value1, value2)**
 
 Returns `true` if **value1** and **value2** are equal. (Does not convert values into a type and does **not** return if all of the properties of each object are also equal.)
 
+```javascript
+// Outputs true
+console.log ( Object.is(null, null) );
+```
+
 #### **Object.isFrozen(objectA)**
 
 Returns if **objectA** is frozen or not.
+
+```javascript
+let objectA = {
+  property1: 1,
+  property2: 2
+}
+
+Object.freeze(objectA);
+
+// Outputs true
+console.log( Object.isFrozen(objectA) );
+```
 
 #### **Object.isSealed(objectA)**
 
 Returns if an object is sealed or not.
 
+```javascript
+let objectA = {
+  property1: 1,
+  property2: 2
+}
+
+Object.seal(objectA);
+
+// Outputs true
+console.log ( Object.isSealed(objectA) );
+```
+
 #### **Object.keys(objectA)**
 
 Returns an array of the names of all of the properties of **objectA**.
 
+```javascript
+const objectA = {
+  property1: 1,
+  property2: 2
+}
+
+// Outputs [ 'property1', 'property2' ]
+console.log( Object.keys(objectA) );
+```
+
 #### **Object.seal(objectA)**
 
 Seals **objectA**. Prevents properties from being deleted or changed in any way.
+
+**Note:** **seal()** differs from **freeze()**. If an object is sealed, new properties cannot be adde. If it is frozen, values cannot be changed.
+
+```javascript
+let objectA = {
+  property1: 1,
+  property2: 2
+}
+
+Object.seal(objectA);
+
+objectA.property3 = 3;
+
+// Outputs undefined
+console.log ( objectA.property3 );
+```
 
 #### **Object.values(objectA)**
 
 Returns the values of all properties of **objectA**.
 
 ### Math Static Methods
+
+**Note:** All methods for static methods of **Math** are included for completeness. Examples are not provided.
 
 #### **Math.abs(x)**
 
@@ -433,105 +633,280 @@ Returns the integer part of the number x, removing any fractional digits.
 
 #### **Number.isNaN()**
 
-Determine whether the passed value is NaN.
+Determine whether the passed value is NaN (Not a Number).
+
+```javascript
+// Outputs false
+console.log ( Number.isNaN(-1) );
+```
 
 #### **Number.isFinite()**
 
 Determine whether the passed value is a finite number.
 
+```javascript
+// Outputs true
+console.log ( Number.isFinite(-1) );
+```
+
 #### **Number.isInteger()**
 
 Determine whether the passed value is an integer.
 
+```javascript
+// Outputs true
+console.log ( Number.isInteger(4) );
+```
+
 #### **Number.isSafeInteger()**
 
-Determine whether the passed value is a safe integer (number between -(253 - 1) and 253 - 1).
+Determine whether the passed value is a safe integer.
+
+```javascript
+// Outputs true
+console.log ( Number.isSafeInteger(655555555555) );
+```
 
 #### **Number.parseFloat(string)**
 
 This is the same as the global parseFloat() function.
 
+```javascript
+// Outputs 4.56
+console.log ( Number.parseFloat("4.56") );
+```
+
 #### **Number.parseInt(string, [radix])**
 
 This is the same as the global parseInt() function.
 
+```javascript
+// Outputs 4
+console.log ( Number.parseInt("4") );
+```
+
 ### Console Static Methods
 
-#### **console.assert()**
+#### **console.assert(argument)**
 
-Log a message and stack trace to console if the first argument is false.
+Log a message and stack trace to console if the first **argument** is false.
+
+```javascript
+// Outputs "Assertion failed"
+console.assert(true == false);
+```
 
 #### **console.clear()**
 
 Clear the console.
 
+```javascript
+// Outputs "Hi!"
+console.log("Hi!");
+// Clears output
+console.clear()
+```
+
 #### **console.count()**
 
 Log the number of times this line has been called with the given label.
+
+```javascript
+// Outputs
+// Testing: 1
+// Testing: 2
+console.count("Testing");
+console.count("Testing")
+```
 
 #### **console.countReset()**
 
 Resets the value of the counter with the given label.
 
+```javascript
+// Outputs
+// Testing: 1
+// Testing: 1
+console.count("Testing");
+console.countReset("Testing");
+console.count("Testing");
+```
+
 #### **console.debug()**
 
 Outputs a message to the console with the log level "debug".
 
+```javascript
+console.debug("Debug level message!");
+```
+
 #### **console.dir()**
 
-Displays an interactive listing of the properties of a specified JavaScript object. This listing lets you use disclosure triangles to examine the contents of child objects.
+Displays an interactive listing of the properties of a specified JavaScript object in browsers. This listing lets you use disclosure triangles to examine the contents of child objects.
+
+```javascript
+const objectExample = {
+  property1: 1,
+  property2: 2
+}
+
+// Outputs
+// { property1: 1, property2: 2 }
+console.dir( objectExample );
+```
 
 #### **console.dirxml()**
 
-Displays an XML/HTML Element representation of the specified object if possible or the JavaScript Object view if it is not possible.
+Displays an XML/HTML Element representation of the specified object if possible or the JavaScript Object view if it is not possible in browsers.
+
+```javascript
+const objectExample = {
+  property1: 1,
+  property2: 2
+}
+
+// Outputs
+// { property1: 1, property2: 2 }
+console.dirxml( objectExample );
+```
 
 #### **console.error()**
 
 Outputs an error message. You may use string substitution and additional arguments with this method.
 
+```javascript
+console.error( "Door happened!" );
+```
+
 #### **console.group()**
 
 Creates a new inline group, indenting all following output by another level. To move back out a level, call groupEnd().
 
+```javascript
+// Outputs
+//   Part of the group!
+//   Part of the group!
+console.group();
+console.log("Part of the group!");
+console.log("Part of the group!");
+console.groupEnd();
+```
+
 #### **console.groupCollapsed()**
 
-Creates a new inline group, indenting all following output by another level. However, unlike group() this starts with the inline group collapsed requiring the use of a disclosure button to expand it. To move back out a level, call groupEnd().
+Creates a new inline group, indenting all following output by another level. However, unlike group() this starts with the inline group collapsed requiring the use of a disclosure button to expand it in browsers. To move back out a level, call groupEnd().
+
+```javascript
+// Outputs
+//   Part of the group!
+//   Part of the group!
+console.groupCollapsed();
+console.log("Part of the group!");
+console.log("Part of the group!");
+console.groupEnd();
+```
 
 #### **console.groupEnd()**
 
 Exits the current inline group.
 
+```javascript
+// Outputs
+//   Part of the group!
+//   Part of the group!
+console.group();
+console.log("Part of the group!");
+console.log("Part of the group!");
+console.groupEnd();
+```
+
 #### **console.info()**
 
 Informative logging of information. You may use string substitution and additional arguments with this method.
+
+```javascript
+console.info("Info message!");
+```
 
 #### **console.log()**
 
 For general output of logging information. You may use string substitution and additional arguments with this method.
 
+```javascript
+console.log("Hi");
+```
+
 #### **console.table()**
 
 Displays tabular data as a table.
+
+```javascript
+
+// Outputs
+// ┌─────────┬───────────┐
+// │ (index) │  Values   │
+// ├─────────┼───────────┤
+// │    0    │ 'apples'  │
+// │    1    │ 'oranges' │
+// │    2    │ 'bananas' │
+// └─────────┴───────────┘
+console.table( ["apples", "oranges", "bananas"] );
+```
 
 #### **console.time()**
 
 Starts a timer with a name specified as an input parameter. Up to 10,000 simultaneous timers can run on a given page.
 
+```javascript
+// Outputs:
+// default: 0.156ms
+console.time();
+console.timeEnd();
+```
+
 #### **console.timeEnd()**
 
 Stops the specified timer and logs the elapsed time in seconds since it started.
+
+```javascript
+// Outputs: 
+// default: 0.156ms
+console.time();
+console.timeEnd();
+```
 
 #### **console.timeLog()**
 
 Logs the value of the specified timer to the console.
 
+```javascript
+// Outputs
+// example: 0.099ms
+// example: 0.377ms
+console.time("example");
+console.timeLog("example");
+console.timeEnd("example");
+```
+
 #### **console.trace()**
 
 Outputs a stack trace.
 
+```javascript
+let example = 5;
+
+// Outputs
+// Trace: 5...
+console.trace( example );
+```
+
 #### **console.warn()**
 
 Outputs a warning message. You may use string substitution and additional arguments with this method.
+
+```javascript
+console.warn("Warning!");
+```
 
 ### JSON Static Methods
 
@@ -539,11 +914,44 @@ Outputs a warning message. You may use string substitution and additional argume
 
 Parse the string text as JSON and transform the value into an object literal. If an error occurs during the transformation, a `SyntaxError` will be thrown.
 
+```javascript
+const jsonString = '{"property1":1,"property2":2}';
+
+// Outputs
+// { property1: 1, property2: 2 }
+console.log ( JSON.parse(jsonString) );
+```
+
 #### **JSON.stringify(value[, replacer[, space]])**
 
 Returns a JSON string equal to the specified **value**, translating all properties into string values. The second, optional argument *replacer* allows for changing default translation behaviors like using `undefined` for `null` values.
 
-The third, optional argument *space* defines the whitespace between properties. (Using, for example, the tab, `\t`, printing symbol would place space between each and "pretty print" the values.)
+```javascript
+const objectExample = {
+  property1: 1,
+  property2: 2
+}
+
+// Outputs
+// {"property1":1,"property2":2}
+console.log ( JSON.stringify(objectExample) );
+```
+
+The third, optional argument *space* defines the whitespace between properties. (Using, for example, the tab printing symbol, `\t`, would "tabs between each and "pretty print" the values.)
+
+```javascript
+const objectExample = {
+  property1: 1,
+  property2: 2
+}
+
+// Outputs
+// {
+//    "property1": 1,
+//    "property2": 2
+// }
+console.log ( JSON.stringify(objectExample, null, "\t") );
+```
 
 ### Static Global Functions
 
@@ -553,22 +961,116 @@ JavaScript also defines global functions that can be used from any scope for pro
 
 Evaluates JavaScript code represented as *string*.
 
-**Note:** Using *eval()* is often a security risk and should very rarely be used. Any code run with *eval()* executes in the global scope.
+**Note:** Using *eval()* is often a security risk and should very rarely be used. Any code run with **eval()** executes in the global scope.
+
+```javascript
+const jsString = 'let example = 5;';
+
+eval(jsString);
+```
 
 #### **isFinite(x)**
 
 Returns if *value* is a finite number.
 
+```javascript
+// Outputs true
+console.log ( isFinite(-1) );
+```
+
 #### **isNaN(x)**
 
 Returns if *x* is NaN (not-a-number) or not.
 
-**Note:** In most cases, the preferred function is *Number.isNaN()* because of how *isNaN()* will attempt to convert values into numbers for testing.
+```javascript
+// Outputs false
+console.log ( isNaN(-1) );
+```
+
+**Note:** In most cases, the preferred function is **Number.isNaN()** because of how **isNaN()** will attempt to convert values into numbers for testing.
 
 #### **parseFloat(x)**
 
 Parses *x* (possibly converting it into a string first) and returns a floating point (decimal) number.
 
+```javascript
+// Outputs 4.56
+console.log ( parseFloat("4.56") );
+```
+
 #### **parseInt(x, radix)**
 
 Parses a string, *x*, and returns an integer of the specified radix (the base in mathematical numeral systems).
+
+```javascript
+// Outputs 4
+console.log ( parseInt("4.56") );
+```
+
+#### **setInterval(callback, time)**
+
+Set a function **callback** to be called ever milliseconds in *time*.
+
+```javascript
+// Outputs
+// Hi, there!
+// Hi, there!
+// Hi, there!
+// Hi, there!
+// Hi, there!
+// Hi, there!
+let intervalCount = 5;
+
+let intervalLabel = setInterval(() => {
+  
+  console.log("Hi, there!");
+  
+  intervalCount++;
+
+  if(intervalCount > 10) {
+    clearInterval(intervalLabel);
+  }
+
+}, 1000);
+```
+
+#### **setTimeout(callback, time)**
+
+Set a function **callback** to be called after milliseconds in *time*.
+
+```javascript
+// Outputs (after 1 second)
+// "Hi, there!"
+setTimeout(() => {
+  
+  console.log("Hi, there!");
+
+}, 1000);
+```
+
+### **clearInterval(label)**
+
+Stop (clear) an interval based on its *value*.
+
+```javascript
+// Outputs
+// Hi, there!
+// Hi, there!
+// Hi, there!
+// Hi, there!
+// Hi, there!
+// Hi, there!
+let intervalCount = 5;
+
+let intervalLabel = setInterval(() => {
+  
+  console.log("Hi, there!");
+  
+  intervalCount++;
+
+  if(intervalCount > 10) {
+    clearInterval(intervalLabel);
+  }
+
+}, 1000);
+```

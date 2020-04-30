@@ -1,6 +1,22 @@
 # Learning JavaScript ES6
 
-This is an open source textbook. Remixing, reusing, or improving it through pull requests is *highly encouraged*. In fact, if you want to help add content, there is a [TODO list](TODO.md) for what is being worked on next.
+- [Learning JavaScript ES6](#learning-javascript-es6)
+  - [Welcome](#welcome)
+  - [What This Is (and Isn't)](#what-this-is-and-isnt)
+  - [Table of Contents](#table-of-contents)
+  - [Creative Commons Licensed](#creative-commons-licensed)
+
+## Welcome
+
+*Learning JavaScript ES6* is an open source textbook designed to be remixed, reused, or improving through submitting issues and pull requests on GitHub!
+
+## What This Is (and Isn't)
+
+The word "Learning" in *Learning JavaScript ES6* is purposeful. This **is not** an exhaustive list of everything in JavaScript and how to use.
+
+As a language, it changes year-to-year and new functionality gets added. Different programming patterns also emerge or fade away over time as well.
+
+This book tries to outline and review major functionality in JavaScript ES6.
 
 ## Table of Contents
 
@@ -16,8 +32,11 @@ This is an open source textbook. Remixing, reusing, or improving it through pull
 - [Chapter 9: Iterators](chapter9/index.md)
 - [Chapter 10: **Set()**, **Map()**, **WeakSet()**, and **WeakMap()**](chapter10/index.md)
 - [Chapter 11: Generator Functions](chapter11/index.md)
+- [Chapter 12: ArrayBuffer and Typed Arrays](chapter12/index.md)
 
 ---
+
+## Creative Commons Licensed
 
 ![alt text](https://i.creativecommons.org/l/by/4.0/88x31.png "Creative Commons License")
 

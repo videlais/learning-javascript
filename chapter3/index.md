@@ -23,7 +23,7 @@
         - [String *length*](#string-length)
       - [String Methods](#string-methods)
         - [String **charAt(index)**](#string-charatindex)
-        - [String **concat()**](#string-concat)
+        - [String **concat(value, value, ...)**](#string-concatvalue-value)
         - [String **includes(value)**](#string-includesvalue)
         - [String **endsWith(value)**](#string-endswithvalue)
         - [String **indexOf(value)**](#string-indexofvalue)
@@ -46,6 +46,7 @@
         - [String **trimEnd()** / **trimRight()**](#string-trimend--trimright)
       - [Concatenation](#concatenation)
       - [Template Literals](#template-literals)
+      - [Template Literals are Strings](#template-literals-are-strings)
     - [Object Literals](#object-literals)
       - [Object Methods](#object-methods)
         - [Object **hasOwnProperty(value)**](#object-hasownpropertyvalue)
@@ -83,6 +84,15 @@ In JavaScript, arrays are also *objects*. This means they have built-in properti
 ##### Array *length*
 
 The *length* of an array is the number of entries within it. This is automatically updated.
+
+**Note:** Because Array positions start at 0 in JavaScript, the number of entries will always be 1 + last position.
+
+```javascript
+let arrayExample = [1,1,1];
+
+// Outputs 3
+console.log(arrayExample);
+```
 
 #### Ordered Entries
 
@@ -137,25 +147,64 @@ while (position < arrayExample.length) {
 
 Copies part of an array into another part of the array.
 
+```javascript
+const array1 = ['a', 'b', 'c', 'd', 'e'];
+
+// copy to index 0 the element at index 3
+console.log(array1.copyWithin(0, 3, 4));
+// expected output: Array ["d", "b", "c", "d", "e"]
+
+// copy to index 1 all elements from index 3 to the end
+console.log(array1.copyWithin(1, 3));
+// expected output: Array ["d", "d", "e", "d", "e"]
+```
+
 ##### Array **fill(value, begin, end)**
 
 Fills an array with *value* from position *begin* to *end*. If *begin* and *end* are not included, fills array from beginning to end.
+
+```javascript
+let arrayExample = [1,1,1];
+// Fill array with 3
+arrayExample.fill(3);
+```
 
 ##### Array **pop()**
 
 Removes the last element in the array and returns it.
 
+```javascript
+let arrayExample = [1,1,1];
+let last = arrayExample.pop();
+```
+
 ##### Array **push(value, value...)**
 
 Adds one or more values to an array and returns the new length.
+
+```javascript
+let arrayExample = [1,1,1];
+arrayExample.push(1);
+```
 
 ##### Array **reverse()**
 
 Reverses the positions of values in an array.
 
+```javascript
+let arrayExample = [3,2,1];
+// [1,2,3]
+arrayExample.reverse()
+```
+
 ##### Array **shift()**
 
 Removes the first element and returns it.
+
+```javascript
+let arrayExample = [1,1,1];
+let front = arrayExample.shift();
+```
 
 ##### Array **sort()**
 
@@ -165,9 +214,22 @@ Sorts the elements of the array in place based on converting their values into s
 
 Removes, replaces, or adds elements to an array in place.
 
+```javascript
+let arrayExample = [1,3,2];
+
+// [1,2,3]
+arrayExample.sort();
+```
+
 ##### Array **unshift()**
 
 Add one or more elements to the front of an array and returns the new length.
+
+```javascript
+let arrayExample = [1,1,1];
+// Length of 5
+arrayExample.unshift(1,1);
+```
 
 ### Strings
 
@@ -191,7 +253,7 @@ All **String** values have a length. This is the number of characters in the str
 let stringExample = "Hello!";
 
 // Outputs 6
-console.log(stringExample.length);
+console.log( stringExample.length );
 ```
 
 #### String Methods
@@ -206,89 +268,245 @@ If *index* is greater than the *length* of the string, it returns an empty strin
 
 Otherwise, it returns the first position (0) within the string.
 
-##### String **concat()**
+```javascript
+let stringExample = "Hello!";
+
+// Output 'H'
+console.log( stringExample.charAt(0) );
+```
+
+##### String **concat(value, value, ...)**
 
 Returns a new string value made up of all of the arguments passed combined together.
+
+```javascript
+let stringExample = "Hello!";
+
+// Hello, World!
+stringExample = stringExample.concat(", world!");
+```
 
 ##### String **includes(value)**
 
 Searches a string for a value, *value*. If found, the function returns `true`. Otherwise, it returns `false`.
 
+```javascript
+let stringExample = "Hello!";
+
+// Outputs true
+console.log( stringExample.includes("lo") );
+```
+
 ##### String **endsWith(value)**
 
 Returns `true` if a string ends with *value*. Otherwise, returns `false`.
+
+```javascript
+let stringExample = "Hello!";
+
+// Outputs true
+console.log( stringExample.endsWith("!") );
+```
 
 ##### String **indexOf(value)**
 
 Returns the first position of *value* within the string or -1 if it cannot be found.
 
+```javascript
+let stringExample = "Hello!";
+
+//Outputs 0
+console.log( stringExample.indexOf("H") )
+```
+
 ##### String **lastIndexOf(value)**
 
 Returns the first position of the *last* occurrence of *value* within a string or -1 if *value* is not found in the string.
+
+```javascript
+let stringExample = "Hello!";
+
+//Outputs 3
+console.log( stringExample.lastIndexOf("l") )
+```
 
 ##### String **match()**
 
 Searches a string using a Regular Expression, returning the result.
 
+```javascript
+let stringExample = "Hello!";
+
+//Outputs ['e']
+console.log( stringExample.match(/e/g) );
+```
+
 ##### String **matchAll()**
 
 Returns all capture groups based on a Regular Expression value.
+
+```javascript
+const stringExample = "Hello!";
+
+const results = [...stringExample.matchAll(/(e)/g)];
+
+//Outputs [ 'e', 'e', index: 1, input: 'Hello!', groups: undefined ]
+console.log( results[0] );
+```
 
 ##### String **padEnd(length, value)**
 
 Returns a new string of length *length* with *value* added to the end of the current string to create a string of *length*.
 
+```javascript
+const stringExample = "Hello!";
+
+//Outputs Hello!!!!!!!
+console.log( stringExample.padEnd(12,"!") );
+```
+
 ##### String **padStart(length, value)**
 
 Returns a new string of length *length* with *value* added to the beginning of the current string to create a string of *length*.
+
+```javascript
+const stringExample = "Hello!";
+
+//Outputs !!!!!!Hello!
+console.log( stringExample.padStart(12,"!") );
+```
 
 ##### String **repeat(number)**
 
 Returns a new string created through repeating the current characters *number* of times.
 
+```javascript
+const stringExample = "Hello!";
+
+//Outputs Hello!Hello!Hello!
+console.log( stringExample.repeat(3) );
+```
+
 ##### String **replace(search, replace)**
 
 Searches for *search* within a string. If found, replaces it with *replace*. Returns a new string.
+
+```javascript
+const stringExample = "Hello!";
+
+//Outputs Hello?
+console.log( stringExample.replace("!", "?") );
+```
 
 ##### String **search(regExp)**
 
 Searches a string based on a Regular Expression.
 
+```javascript
+const stringExample = "Hello!";
+
+//Outputs 1
+console.log( stringExample.search(/e/g) );
+```
+
 ##### String **slice(position, end)**
 
 Returns a new string from the existing string starting with *position* and ending either at the end of the string or at the position *end*.
+
+```javascript
+const stringExample = "Hello!";
+
+//Outputs lo!
+console.log( stringExample.slice(3) );
+```
 
 ##### String **split(value)**
 
 Creates an array through dividing up a string based on *value*.
 
+```javascript
+const stringExample = "H,e,l,l,o,!";
+
+//Outputs[ 'H', 'e', 'l', 'l', 'o', '!' ]
+console.log( stringExample.split(",") );
+```
+
 ##### String **startsWith(value)**
 
 Returns `true` if string begins with *value*. Otherwise, it returns `false`.
+
+```javascript
+const stringExample = "Hello!";
+
+//Outputs true
+console.log( stringExample.startsWith("He") );
+```
 
 ##### String **substring(position, end)**
 
 Returns a new string starting at *position* and ending in *end*. If *end* is greater than the *length*, it returns up to the end.
 
+```javascript
+const stringExample = "Hello!";
+
+//Outputs lo!
+console.log( stringExample.substring(3) );
+```
+
 ##### String **toLowerCase()**
 
 Returns the current string with all letters in lower case.
+
+```javascript
+const stringExample = "HELLO!";
+
+//Outputs hello!
+console.log( stringExample.toLowerCase() );
+```
 
 ##### String **toUpperCase()**
 
 Returns the current string with all letters in upper case.
 
+```javascript
+const stringExample = "Hello!";
+
+//Outputs HELLO!
+console.log( stringExample.toUpperCase() );
+```
+
 ##### String **trim()**
 
 Returns a new string with whitespace (space, tab, no-break space) removes from the beginning and end.
+
+```javascript
+const stringExample = "  Hello!  ";
+
+//Outputs Hello!
+console.log( stringExample.trim() );
+```
 
 ##### String **trimStart()** / **trimLeft()**
 
 Removed whitespace space, tab, no-break space) from the beginning of the string.
 
+```javascript
+const stringExample = "  Hello!  ";
+
+//Outputs "Hello!  "
+console.log( stringExample.trimStart() );
+```
+
 ##### String **trimEnd()** / **trimRight()**
 
 Removed whitespace space, tab, no-break space) from the end of the string.
+
+```javascript
+const stringExample = "  Hello!  ";
+
+//Outputs "  Hello!"
+console.log( stringExample.trimRight() );
+```
 
 #### Concatenation
 
@@ -322,6 +540,19 @@ console.log(`This uses a template literal: ${example}!`);
 ```
 
 No concatenation is needed. The template literal handles all of the work to combine the value of the variable with the string around it.
+
+#### Template Literals are Strings
+
+The value of a template literal is a **String**. All built-in properties and methods of string also apply to template literals.
+
+```javascript
+const valueExample = "5";
+
+const templateLiteralExample = `This is ${valueExample}`;
+
+//Outputs "8"
+console.log( templateLiteralExample.substring(8) );
+```
 
 ### Object Literals
 
