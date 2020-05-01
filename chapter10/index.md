@@ -1,409 +1,237 @@
-# **Set()**, **Map()**, **WeakSet()**, and **WeakMap()**
+# Iterators
 
-- [**Set()**, **Map()**, **WeakSet()**, and **WeakMap()**](#set-map-weakset-and-weakmap)
-  - [**Set()**](#set)
-    - [Set Properties](#set-properties)
-      - [Set *size*](#set-size)
-    - [Set Methods](#set-methods)
-      - [Set **has(value)**](#set-hasvalue)
-      - [Set **add(value)**](#set-addvalue)
-      - [Set **delete(value)**](#set-deletevalue)
-      - [Set **clear()**](#set-clear)
-      - [Set **entries()**](#set-entries)
-      - [Set **values()**](#set-values)
-      - [Set **forEach(callback)**](#set-foreachcallback)
-  - [**Map()**](#map)
-    - [Map Properties](#map-properties)
-      - [Map *size*](#map-size)
-    - [Map Methods](#map-methods)
-      - [Map **get(key)**](#map-getkey)
-      - [Map **has(key)**](#map-haskey)
-      - [Map **set(key, value)**](#map-setkey-value)
-      - [Map **delete(key)**](#map-deletekey)
-      - [Map **entries()**](#map-entries)
-      - [Map **values()**](#map-values)
-      - [Map **forEach(callback)**](#map-foreachcallback)
-  - [**WeakSet()**](#weakset)
-    - [WeakSet Methods](#weakset-methods)
-      - [WeakSet **add(value)**](#weakset-addvalue)
-      - [WeakSet **has(value)**](#weakset-hasvalue)
-      - [WeakMap **delete(value)**](#weakmap-deletevalue)
-  - [**WeakMap()**](#weakmap)
-    - [WeakMap Methods](#weakmap-methods)
-      - [WeakMap **set(key, value)**](#weakmap-setkey-value)
-      - [WeakMap **get(key)**](#weakmap-getkey)
-      - [WeakMap **has(key)**](#weakmap-haskey)
-      - [WeakMap **delete(key)**](#weakmap-deletekey)
+- [Iterators](#iterators)
+  - [Reviewing Iteration](#reviewing-iteration)
+  - [ES6 Improvements](#es6-improvements)
+    - [`for... of`](#for-of)
+    - [`for... in`](#for-in)
+    - [Defining Custom Iterators](#defining-custom-iterators)
 
-## **Set()**
+## Reviewing Iteration
 
-A **Set** is a special type of **Array** object with one specific rule: each value *must* be unique.
+In JavaScript ES5, moving through the entries in an array or properties of an object can potentially be complicated and require multiple lines of code.
 
-Sets are created through the global constructor **Set()**. Unlike Arrays, values cannot be passed into a Set using square brackets. They must be added through the function **add()**.
-
-`Set` also provides the following properties and methods:
-
-### Set Properties
-
-#### Set *size*
-
-Contains the current number of entries in the set.
+**Accessing Array Properties:**
 
 ```javascript
-let setExample = new Set();
-setExample.add("1");
+const arrayExample = [1,2,3];
 
-// Outputs 1
-console.log( setExample.size );
+for(let i = 0; i < arrayExample.length; i++) {
+  // Access indices of arrayExample using i
+}
 ```
 
-### Set Methods
-
-#### Set **has(value)**
-
-Returns if the *value* is in the set or not.
-
-```javascript
-let setExample = new Set();
-setExample.add("1");
-
-// Outputs true
-console.log ( setExample.has("1") );
-```
-
-#### Set **add(value)**
-
-Adds a value to the set.
-
-```javascript
-let setExample = new Set();
-setExample.add(1);
-setExample.add("Hello!");
-```
-
-#### Set **delete(value)**
-
-If *value* is in set, it is removed and returned. Otherwise, returns `false`.
-
-```javascript
-let setExample = new Set();
-setExample.add(1);
-
-// Outputs 1
-console.log ( setExample.size );
-
-setExample.delete(1);
-
-// Outputs 0
-console.log ( setExample.size );
-```
-
-#### Set **clear()**
-
-Delete all entries in the set.
-
-```javascript
-let setExample = new Set();
-setExample.add(1);
-
-// Outputs 1
-console.log ( setExample.size );
-
-setExample.clear();
-
-// Outputs 0
-console.log ( setExample.size );
-```
-
-#### Set **entries()**
-
-Converts each entry into an array of form `[key, value]` where both are the same value of the entry.
-
-```javascript
-let setExample = new Set();
-setExample.add(1);
-setExample.add("hello!");
-
-// Outputs { [ 1, 1 ], [ 'hello!', 'hello!' ] }
-console.log ( setExample.entries() );
-```
-
-#### Set **values()**
-
-Returns an `Iterable` object for accessing entries in the set in the order they were inserted.
-
-```javascript
-let setExample = new Set();
-setExample.add(1);
-setExample.add("hello!");
-
-// Outputs [Set Iterator] { 1, 'hello!' }
-console.log ( setExample.values() );
-```
-
-#### Set **forEach(callback)**
-
-Accepts a function to be called for each entry in the set.
-
-```javascript
-let setExample = new Set();
-setExample.add(1);
-setExample.add("hello!");
-
-// Outputs
-// 1
-// hello!
-setExample.forEach((entry) => {
-  console.log( entry );
-});
-```
-
-## **Map()**
-
-A **Map** a special type of **Array**, but is organized differently. Each entry is added through a (*key*, *value*) format. Each *key* and *value* added can be any valid data type in JavaScript.
-
-**Note:** Like **Set()**, entries are added through its own **add()** method.
-
-### Map Properties
-
-#### Map *size*
-
-Contains the current number of entries in the map.
-
-```javascript
-let mapExample = new Map();
-mapExample.set("key1", "1");
-mapExample.set("key2", "2");
-
-// Outputs 2
-console.log( mapExample.size );
-```
-
-### Map Methods
-
-#### Map **get(key)**
-
-Returns the *value* associated with the key.
-
-```javascript
-let mapExample = new Map();
-mapExample.set("key1", "1");
-
-// Outputs "1"
-console.log( mapExample.get("key1") );
-```
-
-#### Map **has(key)**
-
-Returns if the *key* is in the map or not.
-
-```javascript
-let mapExample = new Map();
-mapExample.set("key1", "1");
-
-// Outputs true
-console.log( mapExample.has("key1") );
-```
-
-#### Map **set(key, value)**
-
-Updates the *value* for the *key*.
-
-```javascript
-let mapExample = new Map();
-mapExample.set("key1", "1");
-mapExample.set("key2", "2");
-
-// Outputs 2
-console.log( mapExample.size );
-```
-
-#### Map **delete(key)**
-
-If *key* is in map, the *(key, value)* is removed and returned as an array. Otherwise, returns `false`.
-
-```javascript
-let mapExample = new Map();
-mapExample.set("key1", "1");
-
-mapExample.delete("key1");
-
-// Outputs 0
-console.log( mapExample.size );
-```
-
-#### Map **entries()**
-
-Converts each entry into an array of form `[key, value]` and returns the array.
-
-```javascript
-let mapExample = new Map();
-mapExample.set("key1", "1");
-
-// Outputs
-// [Map Entries] { [ 'key1', '1' ] }
-console.log( mapExample.entries() );
-```
-
-#### Map **values()**
-
-Returns an `Iterable` object for accessing entries in the map in the order they were inserted.
-
-```javascript
-let mapExample = new Map();
-mapExample.set("key1", "1");
-
-// Outputs
-// [Map Iterator] { '1' }
-console.log( mapExample.values() );
-```
-
-#### Map **forEach(callback)**
-
-Accepts a function to be called for each entry in the map.
-
-```javascript
-let mapExample = new Map();
-mapExample.set("key1", "1");
-
-// Outputs 1 key
-mapExample.forEach((value, key) => {
-  console.log(value, key);
-});
-```
-
-## **WeakSet()**
-
-As **Set** is a special **Array** object, **WeakSet** is a special version of **Set**. It carries the same constraint that all entries be *unique*, but also specializes in one more rule: only *objects* can be stored.
-
-The use of the word `weak` also implies a *weakly-held* relationship to its contents. If no other references to the objects held within it exist, they will be garbage collected.
-
-**Note:** JavaScript handles all memory management automatically. In programming terminology, "garbage collection" is a service that acts to free up memory in running code through examining variables that are no longer being used and removing them from active memory.
-
-Because all objects are weakly-held, there is also no available *size* of the number of objects held.
-
-### WeakSet Methods
-
-#### WeakSet **add(value)**
-
-Adds the object **value** to the weak set.
+**Accessing Object Properties:**
 
 ```javascript
 const objectExample = {
-  property1: 1
+  property1: 1,
+  property2: 2,
+  property3: 3
 };
 
-let weakSetExample = new WeakSet();
-weakSetExample.add(objectExample);
+// Object.entries() returns an array
+//  of arrays in the pattern of
+//  [property, value].
+const arrayFromObject = Object.entries(objectExample);
+
+let i = 0;
+
+while(i < arrayFromObject.length) {
+  // Properties are position 0
+  // Values are position 1
+  console.log(arrayFromObject[i][0], arrayFromObject[i][1]);
+  i++;
+}
 ```
 
-#### WeakSet **has(value)**
+## ES6 Improvements
 
-Returns if object **value** is in the set or not.
+JavaScript ES6 improved this common pattern through two additional keywords used with the traditional `for()` loop: `of` and `in`. These keywords access new functionality added in JavaScript ES6: *iterators*.
+
+### `for... of`
+
+In JavaScript ES5, moving through an array uses the `for()` keyword and often the creation of an additional variable like *i*, *j*, or *k* where the position of each entry in the array could be accessed through increasing the value of the variable to move forward or decreasing to move backward through the array.
 
 ```javascript
-const objectExample = {
-  property1: 1
-};
+var arrayExample = [1,3,4,5];
 
-let weakSetExample = new WeakSet();
-weakSetExample.add(objectExample);
-
-// Outputs true
-console.log( weakSetExample.has(objectExample) );
+for(var i = 0; i < arrayExample.length; i++) {
+  console.log(arrayExample[i]);
+}
 ```
 
-#### WeakMap **delete(value)**
-
-Removes an object, **value**, from the weak map.
+In JavaScript ES6, this common pattern has been improved through *iterators*. Instead of needing to save the position of an index in the array, an additional keyword, `of`, is used to iterate through the array and use the value *at* the position, instead. For each entry in the array, the variable used is *set* to that value, bypassing the need for the position.
 
 ```javascript
-const objectExample = {
-  property1: 1
-};
+let arrayExample = [1,3,4,5];
 
-let weakSetExample = new WeakSet();
-weakSetExample.add(objectExample);
-
-weakSetExample.delete(objectExample)
-
-// Outputs false
-console.log( weakSetExample.has(objectExample)  );
+for(let entry of arrayExample) {
+  console.log(entry);
+}
 ```
 
-## **WeakMap()**
+### `for... in`
 
-As **Map** is a special **Array** object, **WeakMap** is a special version of **Map**. It carries the same constraint that all entries be *unique*, but also specializes in one more rule: only *objects* can be stored as keys.
-
-Each **key** must be an object. However, values can be any other arbitrary values available in JavaScript.
-
-The use of the word `weak` also implies a *weakly-held* relationship to its contents. If no other references to the objects held within it exist, they will be garbage collected.
-
-**Note:** JavaScript handles all memory management automatically. In programming terminology, "garbage collection" is a service that acts to free up memory in running code through examining variables that are no longer being used and removing them from active memory.
-
-Because all objects are weakly-held, there is also no available *size* of the number of objects held.
-
-### WeakMap Methods
-
-#### WeakMap **set(key, value)**
-
-Adds object **key** with *value* to the weak map.
+When working with objects, there is no access to positions. They do not have them. To help iterate over their properties, the keyword `in` can be combined with `for()`.
 
 ```javascript
-const objectExample = {
-  property1: 1
+let objectExample = {
+  propertyOne: 2,
+  propertyTwo: 3
 };
 
-let weakMapExample = new WeakMap();
-weakMapExample.set(objectExample, 5);
+for(let entry in objectExample) {
+  console.log(entry);
+}
 ```
 
-#### WeakMap **get(key)**
-
-Returns *value* matching the **key** provided. If **key** is not in map, it returns `undefined`.
+However, instead of returning values, like with arrays, the `for... in` pattern returns the *names of the properties themselves*. To access the *values* of the properties, the square bracket syntax can be used to access the computed own properties of the object.
 
 ```javascript
-const objectExample = {
-  property1: 1
+let objectExample = {
+  propertyOne: 2,
+  propertyTwo: 3
 };
 
-let weakMapExample = new WeakMap();
-weakMapExample.set(objectExample, 5);
-
-// Outputs 5
-console.log( weakMapExample.get(objectExample)  );
+for(let entry in objectExample) {
+  console.log(objectExample[entry]);
+}
 ```
 
-#### WeakMap **has(key)**
+### Defining Custom Iterators
 
-Returns if object **key** is within the weak map or not.
+The `Symbol` keyword can be used to define an iterator for any object.
+
+Consider the following code:
 
 ```javascript
-const objectExample = {
-  property1: 1
+let objectExample = {
+  propertyOne: 2,
+  propertyTwo: 3
 };
-
-let weakMapExample = new WeakMap();
-weakMapExample.set(objectExample, 5);
-
-// Outputs true
-console.log( weakMapExample.has(objectExample)  );
 ```
 
-#### WeakMap **delete(key)**
-
-If **key** is in map, it is removed.
+The use of the `for...of` pattern would be able to process each property of the **objectExample** object. The following, however, could not be easily handled without custom code.
 
 ```javascript
+// Create an object literal
 const objectExample = {
-  property1: 1
+  // First property (an array)
+  numbers: [
+    1, 2, 3
+  ],
+  // Second property (an array)
+  strings: [
+    'a', 'b', 'c'
+  ]
+};
+```
+
+In the above code, the object has properties which are, themselves, arrays. The `for... of` iterator would not be able to process the complex data structure. It is not *iteratable*.
+
+Like other uses of `Symbol`, an object can be augmented with additional properties. One of the properties that can be added is *iterator*.
+
+Defined iterators follow the pattern of `[Symbol.iterator] = function()` where the function must return an object literal with a property named **next()** that must, itself, return an object literal with at least two properties: *done* and *value*.
+
+The property *value* of the **next()** function is what is returned for the current loop. The property *done* is a Boolean value that marks if the loop is finished or not.
+
+```javascript
+// Create an object literal
+const objectExample = {
+  // First property (an array)
+  numbers: [
+    1, 2, 3
+  ],
+  // Second property (an array)
+  strings: [
+    'a', 'b', 'c'
+  ]
 };
 
-let weakMapExample = new WeakMap();
-weakMapExample.set(objectExample, 5);
+// An iterator must return a next():
+// - next() (function for values in-between start and end)
+//   - Must return an object with two properties:
+//     - done, if the iterating is done or not
+//     - value, the current value
+//
+// Other data can be passed "through" the loop: other values
+//  can also be returned.
+//
+// This example uses 'position' and updates it per loop.
+objectExample[Symbol.iterator] = function() {
 
-weakMapExample.delete(objectExample);
+  // Convert object into array
+  // (Used to get the total number of properties.)
+  let properties = Object.keys(this);
+  // Save position per loop
+  let position = 0;
+  // Current object
+  let currentObject = this;
 
-// Outputs false
-console.log( weakMapExample.has(objectExample)  );
+  return {
+    // Send the object into future loops
+    currentObject: currentObject,
+    // Send the position into future loops
+    position,
+    // Define a function to get values per loop
+    next() {
+      // If there are no more properties,
+      //  stop the loop
+      if (position < properties.length) {
+
+        // Create a value
+        let value = "";
+        // Save the current outer property name
+        let outerEntry = properties[position];
+        // Use the outer property to get the inner property name
+        let innerEntry = currentObject[outerEntry];
+
+        // Loop through the inner properties
+        for(let entry of innerEntry) {
+          // For each add "Internal array value:" per each
+          value += "Internal array value: " +
+            entry +
+            "\n";
+        }
+
+        // Return the current loop
+        // - done: if the loop is over
+        // - value: current value in loop
+        let currentPosition = {
+          done: false,
+          value: value
+        };
+
+        // Increase position
+        position++;
+
+        // Return current (done, value) per loop
+        return currentPosition;
+
+      } else {
+
+        // Loop is over, set done to true
+        return { done: true };
+
+      }
+    }
+  };
+};
+
+// Will display the following:
+//  Internal array value: 1
+//  Internal array value: 2
+//  Internal array value: 3
+//
+//  Internal array value: a
+//  Internal array value: b
+//  Internal array value: c
+for(let entry of objectExample) {
+  console.log(entry);
+}
 ```
+
+In the above code, an object literal is created with two properties, *numbers* and *strings*. These are arrays that hold, for *numbers*, numbers and, for *string*, a series of String values.
+
+The iterator function first converts the object into an array, saves the position, and the current object. Each loop, within the **next()** function, the position is used to get the current outer property value. This is used to access the internal property (array values) and add a string value, "Internal array value: " in front of each.

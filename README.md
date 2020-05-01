@@ -12,11 +12,11 @@
 
 ## What This Is (and Isn't)
 
-The word "Learning" in *Learning JavaScript ES6* is purposeful. This **is not** an exhaustive list of everything in JavaScript and how to use.
+The word "Learning" in *Learning JavaScript ES6* is purposeful. This **is not** an exhaustive list of everything in JavaScript and how to use it.
 
-As a language, it changes year-to-year and new functionality gets added. Different programming patterns also emerge or fade away over time as well.
+As a language, new functionality gets added every year. Different programming patterns also emerge or fade away over time.
 
-This book tries to outline and review major functionality in JavaScript ES6.
+This book *tries* to outline and review major functionality in JavaScript ES6. While early chapter review fundamental concepts in JavaScript, most of the book serves as a reference to functionality with examples of how it could be used.
 
 ## Table of Contents
 
@@ -28,9 +28,9 @@ This book tries to outline and review major functionality in JavaScript ES6.
 - [Chapter 5: Promises](chapter5/index.md)
 - [Chapter 6: Destructing Assignment, Spread Operator, and Default Parameters](chapter6/index.md)
 - [Chapter 7: Public, Static and Private Instance Fields](chapter7/index.md)
-- [Chapter 8: `Symbol`](chapter8/index.md)
-- [Chapter 9: Iterators](chapter9/index.md)
-- [Chapter 10: **Set()**, **Map()**, **WeakSet()**, and **WeakMap()**](chapter10/index.md)
+- [Chapter 8: **Set()**, **Map()**, **WeakSet()**, and **WeakMap()**](chapter10/index.md)
+- [Chapter 9: `Symbol`](chapter8/index.md)
+- [Chapter 10: Iterators](chapter9/index.md)
 - [Chapter 11: Generator Functions](chapter11/index.md)
 - [Chapter 12: ArrayBuffer and Typed Arrays](chapter12/index.md)
 

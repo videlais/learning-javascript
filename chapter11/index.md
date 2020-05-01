@@ -39,7 +39,24 @@ As was mentioned, built-in objects like **Array** and **String** have iterators 
 
 ### `function*`
 
-Generator functions are defined using a special syntax. After the keyword `function`, they use an asterisk, \*. This marks it *generator function*.
+Generator functions are defined using a special syntax. After the keyword `function`, they use an asterisk, \*. This marks it as a *generator function*.
+
+```javascript
+function* generatorExample(i) {
+  yield i;
+  yield i + 1;
+  yield i + 1;
+}
+
+let gen = generatorExample(1);
+
+// Outputs 1
+console.log( gen.next().value );
+```
+
+### Using `yield`
+
+Generator functions return **Iterators** at any use of the keyword `yield` within them. This pauses the function and its returned properties (from the iterator protocol) of *done* and *value* can be accessed.
 
 ```javascript
 function* generatorExample(i) {
@@ -57,4 +74,29 @@ console.log( gen.next().value );
 console.log( gen.next().value );
 ```
 
-### Using `yield`
+The use of the keyword `yield` updates the use of *done*, *value*, and returns control to the calling code. The property *value* will be whatever follows the keyword `yield`. This works like a "temporary return statement" within the generator function, yielding values.
+
+```javascript
+function* generatorExample(i) {
+  while(i < 5) {
+    yield i;
+    i++;
+  }
+}
+
+let gen = generatorExample(1);
+
+let iterator = gen.next();
+
+//Outputs
+// 1
+// 2
+// 3
+// 4
+while(!iterator.done) {
+  console.log( iterator.value );
+  iterator = gen.next();
+}
+```
+
+Once the generator function has finished (a `return` statement, either explicitly or implicitly is encountered), any future calls to its **next()** method will result in `undefined`. The function, once it finishes, no longer exists.

@@ -1,185 +1,409 @@
-# Symbol
+# **Set()**, **Map()**, **WeakSet()**, and **WeakMap()**
 
-- [Symbol](#symbol)
-  - [Reviewing Symbols](#reviewing-symbols)
-  - [Adding Unique Identifiers](#adding-unique-identifiers)
-  - [Customizing Well-Known Functionality](#customizing-well-known-functionality)
-  - [`Symbol` Shorthand](#symbol-shorthand)
-    - [Computed Object Literal Properties](#computed-object-literal-properties)
-    - [Computed Instance Fields](#computed-instance-fields)
-    - [Hidden Properties](#hidden-properties)
+- [**Set()**, **Map()**, **WeakSet()**, and **WeakMap()**](#set-map-weakset-and-weakmap)
+  - [**Set()**](#set)
+    - [Set Properties](#set-properties)
+      - [Set *size*](#set-size)
+    - [Set Methods](#set-methods)
+      - [Set **has(value)**](#set-hasvalue)
+      - [Set **add(value)**](#set-addvalue)
+      - [Set **delete(value)**](#set-deletevalue)
+      - [Set **clear()**](#set-clear)
+      - [Set **entries()**](#set-entries)
+      - [Set **values()**](#set-values)
+      - [Set **forEach(callback)**](#set-foreachcallback)
+  - [**Map()**](#map)
+    - [Map Properties](#map-properties)
+      - [Map *size*](#map-size)
+    - [Map Methods](#map-methods)
+      - [Map **get(key)**](#map-getkey)
+      - [Map **has(key)**](#map-haskey)
+      - [Map **set(key, value)**](#map-setkey-value)
+      - [Map **delete(key)**](#map-deletekey)
+      - [Map **entries()**](#map-entries)
+      - [Map **values()**](#map-values)
+      - [Map **forEach(callback)**](#map-foreachcallback)
+  - [**WeakSet()**](#weakset)
+    - [WeakSet Methods](#weakset-methods)
+      - [WeakSet **add(value)**](#weakset-addvalue)
+      - [WeakSet **has(value)**](#weakset-hasvalue)
+      - [WeakMap **delete(value)**](#weakmap-deletevalue)
+  - [**WeakMap()**](#weakmap)
+    - [WeakMap Methods](#weakmap-methods)
+      - [WeakMap **set(key, value)**](#weakmap-setkey-value)
+      - [WeakMap **get(key)**](#weakmap-getkey)
+      - [WeakMap **has(key)**](#weakmap-haskey)
+      - [WeakMap **delete(key)**](#weakmap-deletekey)
 
-## Reviewing Symbols
+## **Set()**
 
-In programming terminology, a *symbol* is a data type with a unique value or form per instance.
+A **Set** is a special type of **Array** object with one specific rule: each value *must* be unique.
 
-In JavaScript ES6, symbols are created and used with the keyword `Symbol`.
+Sets are created through the global constructor **Set()**. Unlike Arrays, values cannot be passed into a Set using square brackets. They must be added through the function **add()**.
 
-Every use of the global constructor **Symbol()** *always* creates a unique value where the following is always true:
+`Set` also provides the following properties and methods:
+
+### Set Properties
+
+#### Set *size*
+
+Contains the current number of entries in the set.
 
 ```javascript
-Symbol() !== Symbol()
+let setExample = new Set();
+setExample.add("1");
+
+// Outputs 1
+console.log( setExample.size );
 ```
 
-Because of this special usage, it has two common use cases for augmenting other objects.
+### Set Methods
 
-## Adding Unique Identifiers
+#### Set **has(value)**
 
-The primary use case of the keyword `Symbol` is to add *unique* identifiers to other, existing objects.
+Returns if the *value* is in the set or not.
 
 ```javascript
-// Create an object literal
-let exampleObject = {
-  // Give the object a property
-  name: "exampleName"
+let setExample = new Set();
+setExample.add("1");
+
+// Outputs true
+console.log ( setExample.has("1") );
+```
+
+#### Set **add(value)**
+
+Adds a value to the set.
+
+```javascript
+let setExample = new Set();
+setExample.add(1);
+setExample.add("Hello!");
+```
+
+#### Set **delete(value)**
+
+If *value* is in set, it is removed and returned. Otherwise, returns `false`.
+
+```javascript
+let setExample = new Set();
+setExample.add(1);
+
+// Outputs 1
+console.log ( setExample.size );
+
+setExample.delete(1);
+
+// Outputs 0
+console.log ( setExample.size );
+```
+
+#### Set **clear()**
+
+Delete all entries in the set.
+
+```javascript
+let setExample = new Set();
+setExample.add(1);
+
+// Outputs 1
+console.log ( setExample.size );
+
+setExample.clear();
+
+// Outputs 0
+console.log ( setExample.size );
+```
+
+#### Set **entries()**
+
+Converts each entry into an array of form `[key, value]` where both are the same value of the entry.
+
+```javascript
+let setExample = new Set();
+setExample.add(1);
+setExample.add("hello!");
+
+// Outputs { [ 1, 1 ], [ 'hello!', 'hello!' ] }
+console.log ( setExample.entries() );
+```
+
+#### Set **values()**
+
+Returns an `Iterable` object for accessing entries in the set in the order they were inserted.
+
+```javascript
+let setExample = new Set();
+setExample.add(1);
+setExample.add("hello!");
+
+// Outputs [Set Iterator] { 1, 'hello!' }
+console.log ( setExample.values() );
+```
+
+#### Set **forEach(callback)**
+
+Accepts a function to be called for each entry in the set.
+
+```javascript
+let setExample = new Set();
+setExample.add(1);
+setExample.add("hello!");
+
+// Outputs
+// 1
+// hello!
+setExample.forEach((entry) => {
+  console.log( entry );
+});
+```
+
+## **Map()**
+
+A **Map** a special type of **Array**, but is organized differently. Each entry is added through a (*key*, *value*) format. Each *key* and *value* added can be any valid data type in JavaScript.
+
+**Note:** Like **Set()**, entries are added through its own **add()** method.
+
+### Map Properties
+
+#### Map *size*
+
+Contains the current number of entries in the map.
+
+```javascript
+let mapExample = new Map();
+mapExample.set("key1", "1");
+mapExample.set("key2", "2");
+
+// Outputs 2
+console.log( mapExample.size );
+```
+
+### Map Methods
+
+#### Map **get(key)**
+
+Returns the *value* associated with the key.
+
+```javascript
+let mapExample = new Map();
+mapExample.set("key1", "1");
+
+// Outputs "1"
+console.log( mapExample.get("key1") );
+```
+
+#### Map **has(key)**
+
+Returns if the *key* is in the map or not.
+
+```javascript
+let mapExample = new Map();
+mapExample.set("key1", "1");
+
+// Outputs true
+console.log( mapExample.has("key1") );
+```
+
+#### Map **set(key, value)**
+
+Updates the *value* for the *key*.
+
+```javascript
+let mapExample = new Map();
+mapExample.set("key1", "1");
+mapExample.set("key2", "2");
+
+// Outputs 2
+console.log( mapExample.size );
+```
+
+#### Map **delete(key)**
+
+If *key* is in map, the *(key, value)* is removed and returned as an array. Otherwise, returns `false`.
+
+```javascript
+let mapExample = new Map();
+mapExample.set("key1", "1");
+
+mapExample.delete("key1");
+
+// Outputs 0
+console.log( mapExample.size );
+```
+
+#### Map **entries()**
+
+Converts each entry into an array of form `[key, value]` and returns the array.
+
+```javascript
+let mapExample = new Map();
+mapExample.set("key1", "1");
+
+// Outputs
+// [Map Entries] { [ 'key1', '1' ] }
+console.log( mapExample.entries() );
+```
+
+#### Map **values()**
+
+Returns an `Iterable` object for accessing entries in the map in the order they were inserted.
+
+```javascript
+let mapExample = new Map();
+mapExample.set("key1", "1");
+
+// Outputs
+// [Map Iterator] { '1' }
+console.log( mapExample.values() );
+```
+
+#### Map **forEach(callback)**
+
+Accepts a function to be called for each entry in the map.
+
+```javascript
+let mapExample = new Map();
+mapExample.set("key1", "1");
+
+// Outputs 1 key
+mapExample.forEach((value, key) => {
+  console.log(value, key);
+});
+```
+
+## **WeakSet()**
+
+As **Set** is a special **Array** object, **WeakSet** is a special version of **Set**. It carries the same constraint that all entries be *unique*, but also specializes in one more rule: only *objects* can be stored.
+
+The use of the word `weak` also implies a *weakly-held* relationship to its contents. If no other references to the objects held within it exist, they will be garbage collected.
+
+**Note:** JavaScript handles all memory management automatically. In programming terminology, "garbage collection" is a service that acts to free up memory in running code through examining variables that are no longer being used and removing them from active memory.
+
+Because all objects are weakly-held, there is also no available *size* of the number of objects held.
+
+### WeakSet Methods
+
+#### WeakSet **add(value)**
+
+Adds the object **value** to the weak set.
+
+```javascript
+const objectExample = {
+  property1: 1
 };
 
-// Define a symbol with a description of "name"
-let exampleSymbol = Symbol("name");
-
-// Augment an existing object with a new, hidden property
-// (The value of the property will be 1,
-//   not "name".)
-exampleObject[exampleSymbol] = 1;
-
-// Display the value of the augmented property
-console.log(exampleObject[exampleSymbol]);
+let weakSetExample = new WeakSet();
+weakSetExample.add(objectExample);
 ```
 
-In the above code, a Symbol is created through the constructor **Symbol()**. It was given a description, "name", and was then used to augment an existing object through using its computed value to define a new property.
+#### WeakSet **has(value)**
 
-**Note:** The description of a Symbol is not its value. It is what its own property *description* will be set to internally. This can be used for debugging purposes.
-
-`Symbol` can also be used to augment existing objects created from classes as well.
+Returns if object **value** is in the set or not.
 
 ```javascript
-// Define a class
-class Example {
-  // Define a public instance field
-  publicInstanceExample = 5;
-}
+const objectExample = {
+  property1: 1
+};
 
-// Create an object based on the class
-let e = new Example();
+let weakSetExample = new WeakSet();
+weakSetExample.add(objectExample);
 
-// Define a symbol with a description of "name"
-let exampleSymbol = Symbol("name");
-
-// Augment an existing object with a new, hidden property
-// (The value of the property will be 1,
-//   not "name".)
-e[exampleSymbol] = 1;
-
-// Display the value of the augmented property
-console.log(e[exampleSymbol]);
+// Outputs true
+console.log( weakSetExample.has(objectExample) );
 ```
 
-## Customizing Well-Known Functionality
+#### WeakMap **delete(value)**
 
-Beyond augmenting object properties, the keyword `Symbol` can also be used with other functionality. Existing objects can be augmented to support `match`, `search`, and `replace`, for example.
+Removes an object, **value**, from the weak map.
 
 ```javascript
-// Define a class
-class Example {
-  // Define a constructor
-  constructor(value) {
-    // Save the value passed to the constructor()
-    this.value = value;
-  }
-  // Augment the class
-  // Define a search()
-  //
-  // This will return the indexOf() of
-  //  the internal this.value.
-  //
-  // (This MUST be be "called" via search()
-  //  on a string through passing a
-  //  new object to it with
-  //  the Symbol.search used within it!)
-  [Symbol.search](string) {
-    return string.indexOf(this.value);
-  }
-}
+const objectExample = {
+  property1: 1
+};
 
-// search() a string through sending the argument
-//  of a new Example() with a string value to
-//  search for the index of internally.
-console.log('some text'.search(new Example('tex')));
+let weakSetExample = new WeakSet();
+weakSetExample.add(objectExample);
+
+weakSetExample.delete(objectExample)
+
+// Outputs false
+console.log( weakSetExample.has(objectExample)  );
 ```
 
-**Note:** The use of `Symbol.search`, `Symbol.match`, or `Symbol.replace` must be used with the corresponding **String.prototype** functions of **search()**, **match()**, and **replace()**.
+## **WeakMap()**
 
-## `Symbol` Shorthand
+As **Map** is a special **Array** object, **WeakMap** is a special version of **Map**. It carries the same constraint that all entries be *unique*, but also specializes in one more rule: only *objects* can be stored as keys.
 
-While the `Symbol` keyword can be used within objects, there is also a shorthand that uses square brackets with field instances.
+Each **key** must be an object. However, values can be any other arbitrary values available in JavaScript.
 
-### Computed Object Literal Properties
+The use of the word `weak` also implies a *weakly-held* relationship to its contents. If no other references to the objects held within it exist, they will be garbage collected.
 
-Object literals can be augmented using the pattern of `[symbolReference]: value` inside its definition to create a computed property name and value.
+**Note:** JavaScript handles all memory management automatically. In programming terminology, "garbage collection" is a service that acts to free up memory in running code through examining variables that are no longer being used and removing them from active memory.
+
+Because all objects are weakly-held, there is also no available *size* of the number of objects held.
+
+### WeakMap Methods
+
+#### WeakMap **set(key, value)**
+
+Adds object **key** with *value* to the weak map.
 
 ```javascript
-// Create an example symbol
-//
-// (The variable 'exampleSymbol' holds
-//  a reference to the unique value. It
-//  must be used to access any properties
-//  created with it.)
-const exampleSymbol = Symbol();
+const objectExample = {
+  property1: 1
+};
 
-// Create an object
-const person = {
-  // Use the saved value
-  //  from the created symbol.
-  //
-  // Use the shorthand
-  //  of [symbolReference]: value
-  [exampleSymbol]: 'Example value'
-}
-
-// Access the created property's value
-//
-// (This will display "Example value".)
-console.log (person[exampleSymbol]);
+let weakMapExample = new WeakMap();
+weakMapExample.set(objectExample, 5);
 ```
 
-### Computed Instance Fields
+#### WeakMap **get(key)**
 
-The square brackets shorthand also works with classes as well. It uses the pattern of `[symbolReference] = value`.
+Returns *value* matching the **key** provided. If **key** is not in map, it returns `undefined`.
 
 ```javascript
-// Create an example symbol
-//
-// (The variable 'exampleSymbol' holds
-//  a reference to the unique value. It
-//  must be used to access any properties
-//  created with it.)
-const exampleSymbol = Symbol();
+const objectExample = {
+  property1: 1
+};
 
-// Create an object
-class Person {
-  // Use the saved value
-  //  from the created symbol.
-  //
-  // Use the shorthand
-  //  of [symbolReference] = value
-  [exampleSymbol] = 'Example value';
-}
+let weakMapExample = new WeakMap();
+weakMapExample.set(objectExample, 5);
 
-// Create a new object
-//
-// Add a computed instance
-//  field based on the
-//  reference value of the created symbol.
-const p = new Person();
-
-// Access the created property's value
-//
-// (This will display "Example value".)
-console.log (p[exampleSymbol]);
+// Outputs 5
+console.log( weakMapExample.get(objectExample)  );
 ```
 
-### Hidden Properties
+#### WeakMap **has(key)**
 
-Any use of `Symbol` with an object creates a "hidden" property. This means they do not appear when **Object.keys()** or **Object.getOwnPropertyNames()** is used with the object. They augment the object, but are not a true property of it.
+Returns if object **key** is within the weak map or not.
 
-To access all properties defined using `Symbol`, the function **Object.getOwnPropertySymbols()** can be used. This acts like **Object.getOwnPropertyNames()**, but only returns properties created using `Symbol`.
+```javascript
+const objectExample = {
+  property1: 1
+};
+
+let weakMapExample = new WeakMap();
+weakMapExample.set(objectExample, 5);
+
+// Outputs true
+console.log( weakMapExample.has(objectExample)  );
+```
+
+#### WeakMap **delete(key)**
+
+If **key** is in map, it is removed.
+
+```javascript
+const objectExample = {
+  property1: 1
+};
+
+let weakMapExample = new WeakMap();
+weakMapExample.set(objectExample, 5);
+
+weakMapExample.delete(objectExample);
+
+// Outputs false
+console.log( weakMapExample.has(objectExample)  );
+```
