@@ -40,17 +40,17 @@
     - [TypedArray Methods](#typedarray-methods)
       - [TypedArray **from()**](#typedarray-from)
       - [TypedArray **of()**](#typedarray-of)
-    - [Int8Array](#int8array)
-    - [Uint8Array](#uint8array)
-    - [Uint8ClampedArray](#uint8clampedarray)
-    - [Int16Array](#int16array)
-    - [Uint16Array](#uint16array)
-    - [Int32Array](#int32array)
-    - [Uint32Array](#uint32array)
-    - [Float32Array](#float32array)
-    - [Float64Array](#float64array)
-    - [BigInt64Array](#bigint64array)
-    - [BigUint64Array](#biguint64array)
+    - [**Int8Array**](#int8array)
+    - [**Uint8Array**](#uint8array)
+    - [**Uint8ClampedArray**](#uint8clampedarray)
+    - [**Int16Array**](#int16array)
+    - [**Uint16Array**](#uint16array)
+    - [**Int32Array**](#int32array)
+    - [**Uint32Array**](#uint32array)
+    - [**Float32Array**](#float32array)
+    - [**Float64Array**](#float64array)
+    - [**BigInt64Array**](#bigint64array)
+    - [**BigUint64Array**](#biguint64array)
 
 ## Specialized Arrays
 
@@ -211,67 +211,67 @@ Creates a new **TypedArray** from an array-like or iterable object.
 
 Creates a new **TypedArray** with a variable number of arguments.
 
-### Int8Array
+### **Int8Array**
 
 Inherits from **TypedArray**.
 
 Works with values in the range -128 to 127 of 8-bit two's complement signed integer byte data.
 
-### Uint8Array
+### **Uint8Array**
 
 Inherits from **TypedArray**.
 
 Works with values in the range 0 to 255 of 8-bit unsigned integer octet data.
 
-### Uint8ClampedArray
+### **Uint8ClampedArray**
 
 Inherits from **TypedArray**.
 
 Works with values in the range 0 to 255 of 8-bit unsigned integer (clamped) octet data.
 
-### Int16Array
+### **Int16Array**
 
 Inherits from **TypedArray**.
 
 Works with values in the range -32768 to 32767 16-bit two's complement signed integer short data.
 
-### Uint16Array
+### **Uint16Array**
 
 Inherits from **TypedArray**.
 
 Works with values in the range 0 to 65535 of  16-bit unsigned integer unsigned short data.
 
-### Int32Array
+### **Int32Array**
 
 Inherits from **TypedArray**.
 
 Works with values in the range -2147483648 to 214748364 of 32-bit two's complement signed integer long data.
 
-### Uint32Array
+### **Uint32Array**
 
 Inherits from **TypedArray**.
 
 Works with values in the range 0 to 4294967295 32-bit unsigned integer unsigned long data.
 
-### Float32Array
+### **Float32Array**
 
 Inherits from **TypedArray**.
 
 Works with values in the range 1.2×10-38 to 3.4×1038 of 32-bit IEEE floating point number (7 significant digits e.g., 1.123456) unrestricted float data.
 
-### Float64Array
+### **Float64Array**
 
 Inherits from **TypedArray**.
 
 Works with values in the range 5.0×10-324 to 1.8×10308 of 64-bit IEEE floating point number (16 significant digits e.g., 1.123...15) unrestricted double data.
 
-### BigInt64Array
+### **BigInt64Array**
 
 Inherits from **TypedArray**.
 
 Works with values in the range -2^63 to 2^63-1 64-bit two's complement signed integer bigint data.
 
-### BigUint64Array
+### **BigUint64Array**
 
 Inherits from **TypedArray**.
 
