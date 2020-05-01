@@ -869,7 +869,7 @@ console.timeEnd();
 Stops the specified timer and logs the elapsed time in seconds since it started.
 
 ```javascript
-// Outputs: 
+// Outputs:
 // default: 0.156ms
 console.time();
 console.timeEnd();
