@@ -24,11 +24,16 @@
       - [Map **values()**](#map-values)
       - [Map **forEach(callback)**](#map-foreachcallback)
   - [**WeakSet()**](#weakset)
-    - [WeakSet Properties](#weakset-properties)
     - [WeakSet Methods](#weakset-methods)
+      - [WeakSet **add(value)**](#weakset-addvalue)
+      - [WeakSet **has(value)**](#weakset-hasvalue)
+      - [WeakMap **delete(value)**](#weakmap-deletevalue)
   - [**WeakMap()**](#weakmap)
-    - [WeakMap Properties](#weakmap-properties)
     - [WeakMap Methods](#weakmap-methods)
+      - [WeakMap **set(key, value)**](#weakmap-setkey-value)
+      - [WeakMap **get(key)**](#weakmap-getkey)
+      - [WeakMap **has(key)**](#weakmap-haskey)
+      - [WeakMap **delete(key)**](#weakmap-deletekey)
 
 ## **Set()**
 
@@ -269,12 +274,136 @@ mapExample.forEach((value, key) => {
 
 ## **WeakSet()**
 
-### WeakSet Properties
+As **Set** is a special **Array** object, **WeakSet** is a special version of **Set**. It carries the same constraint that all entries be *unique*, but also specializes in one more rule: only *objects* can be stored.
+
+The use of the word `weak` also implies a *weakly-held* relationship to its contents. If no other references to the objects held within it exist, they will be garbage collected.
+
+**Note:** JavaScript handles all memory management automatically. In programming terminology, "garbage collection" is a service that acts to free up memory in running code through examining variables that are no longer being used and removing them from active memory.
+
+Because all objects are weakly-held, there is also no available *size* of the number of objects held.
 
 ### WeakSet Methods
 
+#### WeakSet **add(value)**
+
+Adds the object **value** to the weak set.
+
+```javascript
+const objectExample = {
+  property1: 1
+};
+
+let weakSetExample = new WeakSet();
+weakSetExample.add(objectExample);
+```
+
+#### WeakSet **has(value)**
+
+Returns if object **value** is in the set or not.
+
+```javascript
+const objectExample = {
+  property1: 1
+};
+
+let weakSetExample = new WeakSet();
+weakSetExample.add(objectExample);
+
+// Outputs true
+console.log( weakSetExample.has(objectExample) );
+```
+
+#### WeakMap **delete(value)**
+
+Removes an object, **value**, from the weak map.
+
+```javascript
+const objectExample = {
+  property1: 1
+};
+
+let weakSetExample = new WeakSet();
+weakSetExample.add(objectExample);
+
+weakSetExample.delete(objectExample)
+
+// Outputs false
+console.log( weakSetExample.has(objectExample)  );
+```
+
 ## **WeakMap()**
 
-### WeakMap Properties
+As **Map** is a special **Array** object, **WeakMap** is a special version of **Map**. It carries the same constraint that all entries be *unique*, but also specializes in one more rule: only *objects* can be stored as keys.
+
+Each **key** must be an object. However, values can be any other arbitrary values available in JavaScript.
+
+The use of the word `weak` also implies a *weakly-held* relationship to its contents. If no other references to the objects held within it exist, they will be garbage collected.
+
+**Note:** JavaScript handles all memory management automatically. In programming terminology, "garbage collection" is a service that acts to free up memory in running code through examining variables that are no longer being used and removing them from active memory.
+
+Because all objects are weakly-held, there is also no available *size* of the number of objects held.
 
 ### WeakMap Methods
+
+#### WeakMap **set(key, value)**
+
+Adds object **key** with *value* to the weak map.
+
+```javascript
+const objectExample = {
+  property1: 1
+};
+
+let weakMapExample = new WeakMap();
+weakMapExample.set(objectExample, 5);
+```
+
+#### WeakMap **get(key)**
+
+Returns *value* matching the **key** provided. If **key** is not in map, it returns `undefined`.
+
+```javascript
+const objectExample = {
+  property1: 1
+};
+
+let weakMapExample = new WeakMap();
+weakMapExample.set(objectExample, 5);
+
+// Outputs 5
+console.log( weakMapExample.get(objectExample)  );
+```
+
+#### WeakMap **has(key)**
+
+Returns if object **key** is within the weak map or not.
+
+```javascript
+const objectExample = {
+  property1: 1
+};
+
+let weakMapExample = new WeakMap();
+weakMapExample.set(objectExample, 5);
+
+// Outputs true
+console.log( weakMapExample.has(objectExample)  );
+```
+
+#### WeakMap **delete(key)**
+
+If **key** is in map, it is removed.
+
+```javascript
+const objectExample = {
+  property1: 1
+};
+
+let weakMapExample = new WeakMap();
+weakMapExample.set(objectExample, 5);
+
+weakMapExample.delete(objectExample);
+
+// Outputs false
+console.log( weakMapExample.has(objectExample)  );
+```
